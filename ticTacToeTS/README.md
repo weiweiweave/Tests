@@ -8,9 +8,13 @@ This is an Tic Tac Toe game that allows users to play with each other, but still
 
 
 (to install Expo CLI)
+
 `sudo npm install -g expo-cli`
+
 `cd [folder_you_like]`
+
 `expo init ticTacToeTS` (choose minimal Typescript template)
+
 `cd ticTacToeTS`
 
 Replace .tsx files for the game logic.
