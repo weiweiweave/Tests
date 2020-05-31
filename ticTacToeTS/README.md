@@ -2,7 +2,7 @@
 
 ## Objective
 
-This is an Tic Tac Toe game that allows users to play with each other, but still under development.
+This is an Tic Tac Toe game developed using React Native that allows users to play with each other, but still under development.
 
 ## Pre-requisite
 
@@ -16,6 +16,16 @@ This is an Tic Tac Toe game that allows users to play with each other, but still
 `expo init ticTacToeTS` (choose minimal Typescript template)
 
 `cd ticTacToeTS`
+
+(to install React Navigation)
+
+`sudo npm install @react-navigation/native`
+
+`expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view`
+
+`npx pod-install ios`
+
+`npm install @react-navigation/stack`
 
 Replace .tsx files for the game logic.
 
