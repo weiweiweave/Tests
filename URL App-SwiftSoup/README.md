@@ -10,7 +10,7 @@ Multiple rows of the web links can also be removed.
 
 ## Pre-requisite
 
-'pod install'
+`pod install`
 (to install SwiftSoup pod)
 
 Use .xcworkspace from now on.
