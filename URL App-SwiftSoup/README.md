@@ -17,5 +17,7 @@ Use .xcworkspace from now on.
 
 Build the project after installing pods.
 
+## Sample Output
+
 
 ![Screenshot](Documentation/Simulator.png)
