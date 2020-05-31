@@ -1,4 +1,4 @@
-#  URL App
+#  Tic Tac Toe
 
 ## Objective
 
