@@ -213,3 +213,37 @@ def testcase5():
 
 list = testcase5()
 print(sewers(list[0], list[1], list[2], list[3]))
+
+#answer
+def sewers(n,m,h,v):
+    #check the maximum continuous numbers in h
+    #check the maximum continuous numbers in v
+    longest_h = 0
+    longest_v = 0
+
+    for num in h:
+        if num - 1 not in h:
+            current_num = num
+            current_streak = 1
+
+            while current_num + 1 in h:
+                current_num += 1
+                current_streak += 1
+
+            longest_h = max(longest_h, current_streak)
+
+    for num in v:
+        if num - 1 not in v:
+            current_num = num
+            current_streak = 1
+
+            while current_num + 1 in v:
+                current_num += 1
+                current_streak += 1
+
+            longest_v = max(longest_v, current_streak)
+
+    area = (longest_h+1)*(longest_v+1)
+    return area
+
+
