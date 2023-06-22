@@ -7,3 +7,8 @@ For further reference, please consider the following sections:
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.1.0/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.1.0/maven-plugin/reference/html/#build-image)
 
+http://localhost:8080/h2-console
+
+http://localhost:8080/createCustomer?lastName=mary
+
+http://localhost:8080/api/customers
