@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    #url: jdbc:h2:file:/data/demo
+    username: sa
+    #password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+    #script-based initialization through schema.sql and data.sql and also Hibernate initialization
+    #defer-datasource-initialization: true
+
+    #only script-based schema generation is performed using schema.sql.
+    hibernate:
+      ddl-auto: none
+
+  #Accessing the H2 GUI Console
+  h2:
+    console.enabled: true
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8081
