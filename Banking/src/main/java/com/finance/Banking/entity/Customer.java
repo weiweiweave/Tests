@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 
 
 @Entity
@@ -26,6 +27,32 @@ public class Customer {
 
     @Column(name = "last_Name")
     private String lastName;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "email_Address")
+    private String emailAddress;
+
+    @Column(name = "nric")
+    private String nric;
+
+    @Column(name = "fund_Source")
+    private String fundSource;
+
+    @Column(name = "job_Title")
+    private String jobTitle;
+
+    @Column(name = "job_Description")
+    private String jobDescription;
+
+    @Column(name = "date_Of_Birth")
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
+    @Column(name = "creation_Date_Time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDateTime;
 
     @Override
     public String toString() {

@@ -49,29 +49,6 @@ public class CustomerRestController {
 //    }
 
     @GetMapping("/customers")
-//    public ResponseEntity<List<Customer>> getAllCustomers(@RequestParam(required = false) String title) {
-//        try {
-//            List<Customer> customerList = new List<Customer>();
-//
-//            if (title == null) {
-//                //for (Customer customer : customerService.findAll()) {
-//                    //customerService = new CustomerService(customer.getId(),customer.getLastName(),customer.getFirstName());
-//                    //customerServiceList.add(customerService);
-//                //}
-//                customerList = customerService.findAll();
-//            }
-//            //else
-//                //customerRepository.findByLastName(title).forEach(customers::add);
-//
-//            if (customerList.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//
-//            return new ResponseEntity<>(customerList, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
     public List<Customer> findAll() {
         return customerService.findAll();
     }

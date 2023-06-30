@@ -22,9 +22,10 @@ The following guides illustrate how to use some features concretely:
 * [Accessing MongoDB Data with REST](https://spring.io/guides/gs/accessing-mongodb-data-rest/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
-http://localhost:8080/h2-console
-
-http://localhost:8080/createCustomer?lastName=mary
 
 http://localhost:8080/api/customers
+
+
+http://localhost:8081/h2-console
+http://localhost:8081/createCustomer?lastName=mary
 http://localhost:8081/api/customers
