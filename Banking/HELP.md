@@ -27,5 +27,7 @@ http://localhost:8080/api/customers
 
 
 http://localhost:8081/h2-console
+
 http://localhost:8081/createCustomer?lastName=mary
+
 http://localhost:8081/api/customers
