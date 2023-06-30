@@ -1,6 +1,8 @@
 package com.finance.Banking.rest;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.finance.Banking.service.CustomerService;
 public class CustomerRestController {
 
     private static final String template = "Hello, %s!";
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private CustomerService customerService;
 
@@ -50,6 +54,8 @@ public class CustomerRestController {
 
     @GetMapping("/customers")
     public List<Customer> findAll() {
-        return customerService.findAll();
+        List<Customer> customerList = customerService.findAll();
+        logger.trace(customerList.toString());
+        return customerList;
     }
 }
