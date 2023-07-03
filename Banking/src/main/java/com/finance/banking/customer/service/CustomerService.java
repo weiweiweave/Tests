@@ -1,6 +1,6 @@
-package com.finance.Banking.service;
+package com.finance.banking.customer.service;
 
-import com.finance.Banking.entity.Customer;
+import com.finance.banking.customer.entity.Customer;
 
 import java.util.List;
 

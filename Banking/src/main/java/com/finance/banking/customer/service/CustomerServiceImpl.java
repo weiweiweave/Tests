@@ -1,7 +1,7 @@
-package com.finance.Banking.service;
+package com.finance.banking.customer.service;
 
-import com.finance.Banking.dao.CustomerRepository;
-import com.finance.Banking.entity.Customer;
+import com.finance.banking.customer.dao.CustomerRepository;
+import com.finance.banking.customer.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

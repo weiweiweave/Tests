@@ -1,4 +1,4 @@
-package com.finance.Banking.entity;
+package com.finance.banking.customer.entity;
 
 
 import jakarta.persistence.*;
@@ -47,11 +47,11 @@ public class Customer {
     private String jobDescription;
 
     @Column(name = "date_Of_Birth")
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
     @Column(name = "creation_Date_Time")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private Date creationDateTime;
 
     @Override

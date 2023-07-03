@@ -1,20 +1,22 @@
-package com.finance.Banking.rest;
+package com.finance.banking.customer.rest;
 
 
+import com.finance.banking.customer.dto.CustomerDTO;
+import com.finance.banking.customer.mapper.CustomerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.finance.Banking.entity.Customer;
-import com.finance.Banking.service.CustomerService;
+import com.finance.banking.customer.entity.Customer;
+import com.finance.banking.customer.service.CustomerService;
+
 
 @RestController
 @RequestMapping("/api")
@@ -41,21 +43,13 @@ public class CustomerRestController {
 //        return new CustomerService(String.format(template, lastName));
 //    }
 
-//    @GetMapping("/customers")
-//    public ArrayList<CustomerService> listCustomers() {
-//        ArrayList<CustomerService> customerServiceList = new ArrayList<CustomerService>();
-//        CustomerService customerService = null;
-//        for (Customer customer : repository.findAll()) {
-//            customerService = new CustomerService(customer.getId(),customer.getLastName(),customer.getFirstName());
-//            customerServiceList.add(customerService);
-//        }
-//        return customerServiceList;
-//    }
 
     @GetMapping("/customers")
-    public List<Customer> findAll() {
+    public List<CustomerDTO> listCustomers() {
         List<Customer> customerList = customerService.findAll();
-        logger.trace(customerList.toString());
-        return customerList;
+        //logger.trace(customerList.toString());
+        List<CustomerDTO> customerDTOList = customerList.stream().map(CustomerMapper::toDTO).collect(Collectors.toList());
+        //logger.trace(customerDTOList.toString());
+        return customerDTOList;
     }
 }

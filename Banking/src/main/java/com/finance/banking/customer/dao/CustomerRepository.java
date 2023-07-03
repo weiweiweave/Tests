@@ -1,6 +1,6 @@
-package com.finance.Banking.dao;
+package com.finance.banking.customer.dao;
 
-import com.finance.Banking.entity.Customer;
+import com.finance.banking.customer.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
