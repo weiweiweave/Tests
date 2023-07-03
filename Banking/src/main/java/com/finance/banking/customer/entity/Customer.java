@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -47,12 +49,16 @@ public class Customer {
     private String jobDescription;
 
     @Column(name = "date_Of_Birth")
-    //@Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "creation_Date_Time")
-    //@Temporal(TemporalType.TIMESTAMP)
-    private Date creationDateTime;
+    private LocalDateTime creationDateTime;
+
+    public Customer(String firstName, String lastName, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+    }
 
     @Override
     public String toString() {

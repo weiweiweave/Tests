@@ -1,5 +1,5 @@
 create table customers(
-  id int not null AUTO_INCREMENT,
+  id int not null AUTO_INCREMENT UNIQUE,
   first_Name varchar(100) null,
   last_Name varchar(100) null,
   address varchar(500) null,
