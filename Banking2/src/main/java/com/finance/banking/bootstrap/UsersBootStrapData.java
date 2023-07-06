@@ -4,36 +4,37 @@ import com.finance.banking.user.dao.UserRepository;
 import com.finance.banking.user.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
+@Order(value=1)
 @Component
-public class BootStrapData implements CommandLineRunner {
+public class UsersBootStrapData implements CommandLineRunner {
 
     private UserRepository userRepository;
 
-    private static final String SAMPLE_CSV_FILE_PATH = "src/main/resources/data.csv";
+    @Value("${sample.users}")
+    String usersPath;
 
-    private final Logger logger = LoggerFactory.getLogger(BootStrapData.class);
+    private final Logger logger = LoggerFactory.getLogger(UsersBootStrapData.class);
 
-    public BootStrapData(UserRepository userRepository) {
+    public UsersBootStrapData(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    //Spring Boot invokes its run() method after it starts the context and before the application starts.
     @Override
     public void run(String... args) throws Exception {
 
-            List<User> csvToBean = new CsvToBeanBuilder(new FileReader(SAMPLE_CSV_FILE_PATH)).withType(User.class).build().parse();
+            List<User> csvToBean = new CsvToBeanBuilder(new FileReader(usersPath)).withType(User.class).build().parse();
 
             Iterator<User> csvUserIterator = csvToBean.iterator();
 

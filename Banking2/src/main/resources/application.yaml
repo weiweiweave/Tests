@@ -49,3 +49,7 @@ logging:
 #        orm:
 #          jdbc:
 #            bind: trace
+
+sample:
+  users: src\main\resources\users.csv
+  customers: src\main\resources\customers.csv

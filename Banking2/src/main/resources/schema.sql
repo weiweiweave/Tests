@@ -2,6 +2,14 @@ create table bank_Users(
   id int not null AUTO_INCREMENT UNIQUE,
   username varchar(100) null,
   password varchar(100) null,
+  email_Address varchar(100) null,
+  creation_Date_Time datetime(6) null,
+  PRIMARY KEY ( id )
+);
+
+create table customers(
+  id int not null AUTO_INCREMENT UNIQUE,
+  company varchar(100) null,
   first_Name varchar(100) null,
   last_Name varchar(100) null,
   address varchar(500) null,
