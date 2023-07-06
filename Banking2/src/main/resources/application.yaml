@@ -36,8 +36,8 @@ server:
 
 
 #Logging JPA Queries Via Loggers
-#The first line logs the SQL queries, and
-#the second statement logs the prepared statement parameters.
+#The first line shows the sql statement
+#the second statement shows the sql values
 logging:
   level:
     org:

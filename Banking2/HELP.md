@@ -22,12 +22,18 @@ The following guides illustrate how to use some features concretely:
 * [Accessing MongoDB Data with REST](https://spring.io/guides/gs/accessing-mongodb-data-rest/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
-
-http://localhost:8080/api/customers
-
-
+### Database
 http://localhost:8081/h2-console
+
+### Swagger UI
+http://localhost:8081/swagger-ui/index.html
+
+
+
+### Endpoints
+http://localhost:8080/api/customers
 
 http://localhost:8081/createCustomer?lastName=mary
 
 http://localhost:8081/api/customers
+

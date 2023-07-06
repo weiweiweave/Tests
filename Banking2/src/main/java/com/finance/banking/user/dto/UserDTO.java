@@ -7,22 +7,19 @@ import lombok.Setter;
 @Setter
 public class UserDTO {
 
-    private String firstName;
-    private String lastName;
-    private String address;
+    private String username;
+    private String email;
 
-    public UserDTO(String firstName, String lastName, String address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
+    public UserDTO(String username, String email) {
+        this.username = username;
+        this.email = email;
     }
 
     @Override
     public String toString() {
         return "UserDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

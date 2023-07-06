@@ -69,6 +69,11 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
+    public User(String username, String emailAddress) {
+        this.username = username;
+        this.emailAddress = emailAddress;
+    }
+
     @Override
     public String toString() {
         return "User{" +
