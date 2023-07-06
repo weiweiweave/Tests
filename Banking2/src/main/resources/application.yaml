@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    #url: jdbc:h2:file:/data/demo
+    username: sa
+    #password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+    #Logging JPA Queries To Standard Output
+    #to dump the queries to standard out
+    show-sql: true
+    #To beautify or pretty print the SQL
+    properties:
+      hibernate:
+        format_sql: true
+
+    #script-based initialization through schema.sql and data.sql and also Hibernate initialization
+    #defer-datasource-initialization: true
+
+    #only script-based schema generation is performed using schema.sql.
+    hibernate:
+      ddl-auto: none
+
+  #Accessing the H2 GUI Console
+  h2:
+    console.enabled: true
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8081
+
+
+
+#Logging JPA Queries Via Loggers
+#The first line logs the SQL queries, and
+#the second statement logs the prepared statement parameters.
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+#        orm:
+#          jdbc:
+#            bind: trace
