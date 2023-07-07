@@ -1,4 +1,4 @@
 Index,Username,Password,Email,Roles
-1,ceciliaChapman,abcdef123456,Cecilia.Chapman@gmail.com,'Test'
-2,irisWatson,abcdef112233,Iris.Watson@gmail.com,'Test'
-3,celesteSlater,abcdef445566,Celeste.Slater@gmail.com,'Test'
+1,ceciliaChapman,s7Ndcup412FJ,Cecilia.Chapman@gmail.com,"TELLER,MANAGER"
+2,irisWatson,9px1O4GM990N,Iris.Watson@gmail.com,"TELLER"
+3,celesteSlater,l1fVj2m29y8Z,Celeste.Slater@gmail.com,"BOSS"

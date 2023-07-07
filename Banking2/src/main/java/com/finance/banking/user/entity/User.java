@@ -36,10 +36,11 @@ public class User {
     @Column(name = "creation_Date_Time")
     private LocalDateTime creationDateTime;
 
-    public User(String username, String password, String emailAddress) {
+    public User(String username, String password, String emailAddress, LocalDateTime creationDateTime) {
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
+        this.creationDateTime = creationDateTime;
     }
 
     public User(String username, String emailAddress) {

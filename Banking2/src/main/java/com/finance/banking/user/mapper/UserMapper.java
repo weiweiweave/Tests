@@ -5,6 +5,8 @@ import com.finance.banking.user.dto.UserDTO;
 import com.finance.banking.user.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class UserMapper {
 
@@ -16,6 +18,6 @@ public class UserMapper {
     }
 
     public User toUser(CreateUserDTO createUserDTO) {
-        return new User(createUserDTO.getUsername(), createUserDTO.getEmail());
+        return new User(createUserDTO.getUsername(), createUserDTO.getPassword(), createUserDTO.getEmail(), LocalDateTime.now());
     }
 }

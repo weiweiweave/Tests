@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class UsersBootStrapData implements CommandLineRunner {
             while (csvUserIterator.hasNext()) {
                 User csvUser = csvUserIterator.next();
 
-                userRepository.save(new User(csvUser.getUsername(), csvUser.getPassword(), csvUser.getEmailAddress()));
+                userRepository.save(new User(csvUser.getUsername(), csvUser.getPassword(), csvUser.getEmailAddress(), LocalDateTime.now()));
             }
 
     }
