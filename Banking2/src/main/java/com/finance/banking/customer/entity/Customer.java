@@ -22,9 +22,31 @@ public class Customer {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "staff_id_who_key_in")
+    @CsvBindByName(column = "StaffIdWhoKeyIn")
+    private String staffIdWhoKeyIn;
+
     @Column(name = "company")
     @CsvBindByName(column = "Company")
     private String company;
+
+    @Column(name = "fund_Source")
+    @CsvBindByName(column = "SourceOfFund")
+    private String fundSource;
+
+    @Column(name = "address")
+    @CsvBindByName(column = "Address")
+    private String address;
+
+    @Column(name = "city")
+    @CsvBindByName(column = "City")
+    private String city;
+
+    @Column(name = "joined_Date")
+    @CsvBindByName(column = "JoinedDate")
+    private String joinedDate;
+
+
 
     @Column(name = "first_Name")
     @CsvBindByName(column = "FirstName")
@@ -34,19 +56,12 @@ public class Customer {
     @CsvBindByName(column = "LastName")
     private String lastName;
 
-    @Column(name = "address")
-    @CsvBindByName(column = "Address")
-    private String address;
-
     @Column(name = "email_Address")
     @CsvBindByName(column = "Email")
     private String emailAddress;
 
     @Column(name = "nric")
     private String nric;
-
-    @Column(name = "fund_Source")
-    private String fundSource;
 
     @Column(name = "job_Title")
     private String jobTitle;
@@ -60,11 +75,17 @@ public class Customer {
     @Column(name = "creation_Date_Time")
     private LocalDateTime creationDateTime;
 
-    public Customer(String company, String firstName, String lastName, String address, String emailAddress) {
+    public Customer(String staffIdWhoKeyIn, String company, String fundSource, String address, String city, String joinedDate, String firstName, String lastName, String emailAddress) {
+        this.staffIdWhoKeyIn = staffIdWhoKeyIn;
         this.company = company;
+        this.fundSource = fundSource;
+        this.address = address;
+        this.city = city;
+        this.joinedDate = joinedDate;
+
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+
         this.emailAddress = emailAddress;
     }
 

@@ -1,2 +1,2 @@
-Index,StaffIdWhoKeyIn,Company,SourceOfFund,Address,FirstName,LastName,Sex,Email
-1,ceciliaChapman,Moody,WORK,"7292 Dictum Av., San Antonio MI 47096",Calista,Wise,Female,Calista.Wise@gmail.com
+Index,StaffIdWhoKeyIn,Company,SourceOfFund,Address,City,JoinedDate,FirstName,LastName,Sex,Email
+1,ceciliaChapman,Moody,WORK,"7292 Dictum Av., San Antonio MI 47096",San Antonio,2008-03-20,Calista,Wise,Female,Calista.Wise@gmail.com

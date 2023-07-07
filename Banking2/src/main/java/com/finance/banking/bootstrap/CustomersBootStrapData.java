@@ -41,7 +41,9 @@ public class CustomersBootStrapData implements CommandLineRunner {
             while (csvCustomerIterator.hasNext()) {
                 Customer csvCustomer = csvCustomerIterator.next();
 
-                customerRepository.save(new Customer(csvCustomer.getCompany(),csvCustomer.getFirstName(), csvCustomer.getLastName(), csvCustomer.getAddress(), csvCustomer.getEmailAddress()));
+                Customer newCustomer = new Customer(csvCustomer.getStaffIdWhoKeyIn(),csvCustomer.getCompany(),csvCustomer.getFundSource(),csvCustomer.getAddress(),csvCustomer.getCity(),csvCustomer.getJoinedDate(),            csvCustomer.getFirstName(), csvCustomer.getLastName(), csvCustomer.getEmailAddress());
+
+                customerRepository.save(newCustomer);
             }
 
     }
