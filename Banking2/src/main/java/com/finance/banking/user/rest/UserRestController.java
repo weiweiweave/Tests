@@ -45,11 +45,11 @@ public class UserRestController {
 
         user.setId(Long.valueOf(0));
 
-        logger.trace(user.toString());
+        //logger.trace(user.toString());
 
         User savedUser = userService.save(user);
 
-        logger.trace(savedUser.getId().toString());
+        //logger.trace(savedUser.getId().toString());
 
         return new UserIdDTO(savedUser.getId());
     }

@@ -43,15 +43,12 @@ public class User {
         this.creationDateTime = creationDateTime;
     }
 
-    public User(String username, String emailAddress) {
-        this.username = username;
-        this.emailAddress = emailAddress;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", creationDateTime=" + creationDateTime +
                 '}';

@@ -42,7 +42,9 @@ public class UsersBootStrapData implements CommandLineRunner {
             while (csvUserIterator.hasNext()) {
                 User csvUser = csvUserIterator.next();
 
-                userRepository.save(new User(csvUser.getUsername(), csvUser.getPassword(), csvUser.getEmailAddress(), LocalDateTime.now()));
+                User newUser = new User(csvUser.getUsername(), csvUser.getPassword(), csvUser.getEmailAddress(), LocalDateTime.now());
+
+                userRepository.save(newUser);
             }
 
     }
