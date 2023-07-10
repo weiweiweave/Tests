@@ -1,6 +1,7 @@
 package com.finance.banking.bootstrap;
 
 import com.finance.banking.customer.dao.CustomerRepository;
+import com.finance.banking.customer.dto.CreateCustomerDTO;
 import com.finance.banking.customer.entity.Customer;
 import com.finance.banking.user.entity.User;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -12,6 +13,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,14 +37,32 @@ public class CustomersBootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-            List<Customer> csvToBean = new CsvToBeanBuilder(new FileReader(customersPath)).withType(Customer.class).build().parse();
+            List<CreateCustomerDTO> csvToBean = new CsvToBeanBuilder(new FileReader(customersPath)).withType(CreateCustomerDTO.class).build().parse();
 
-            Iterator<Customer> csvCustomerIterator = csvToBean.iterator();
+            Iterator<CreateCustomerDTO> csvCustomerIterator = csvToBean.iterator();
 
             while (csvCustomerIterator.hasNext()) {
-                Customer csvCustomer = csvCustomerIterator.next();
+                CreateCustomerDTO csvCustomer = csvCustomerIterator.next();
 
-                Customer newCustomer = new Customer(csvCustomer.getStaffIdWhoKeyIn(),csvCustomer.getCompany(),csvCustomer.getFundSource(),csvCustomer.getAddress(),csvCustomer.getCity(),csvCustomer.getJoinedDate(),            csvCustomer.getFirstName(), csvCustomer.getLastName(), csvCustomer.getEmailAddress());
+                LocalDate csvJoinedDate = LocalDate.parse(csvCustomer.getJoinedDate());
+                LocalDate csvDateOfBirth = LocalDate.parse(csvCustomer.getDateOfBirth());
+
+                Customer newCustomer = new Customer(
+                        csvCustomer.getStaffIdWhoKeyIn(),
+                        csvCustomer.getCompany(),
+                        csvCustomer.getFundSource(),
+                        csvCustomer.getAddress(),
+                        csvCustomer.getCity(),
+                        csvJoinedDate,
+                        csvCustomer.getNric(),
+                        csvCustomer.getFirstName(),
+                        csvCustomer.getLastName(),
+                        csvCustomer.getSex(),
+                        csvCustomer.getEmailAddress(),
+                        csvCustomer.getPhone(),
+                        csvDateOfBirth,
+                        csvCustomer.getJobTitle(),
+                        LocalDateTime.now());
 
                 customerRepository.save(newCustomer);
             }

@@ -15,14 +15,14 @@ create table customers(
   address varchar(500) null,
   city varchar(100) null,
   joined_Date date null,
-
+  nric varchar(100) null,
   first_Name varchar(100) null,
   last_Name varchar(100) null,
+  sex varchar(100) null,
   email_Address varchar(100) null,
-  nric varchar(100) null,
-  job_Title varchar(100) null,
-  job_Description varchar(100) null,
+  phone varchar(100) null,
   date_Of_Birth date null,
+  job_Title varchar(100) null,
   creation_Date_Time datetime(6) null,
   PRIMARY KEY ( id )
 );
