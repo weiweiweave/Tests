@@ -4,17 +4,20 @@ create table bank_Users(
   password varchar(100) null,
   email_Address varchar(100) null,
   creation_Date_Time datetime(6) null,
-  PRIMARY KEY ( id )
+  PRIMARY KEY ( id ),
+  CONSTRAINT user_info_username UNIQUE (username),
+  CONSTRAINT user_info_password UNIQUE (password),
+  CONSTRAINT user_info_email_Address UNIQUE (email_Address)
 );
 
-ALTER TABLE bank_Users
-ADD CONSTRAINT user_info_username UNIQUE (username);
+--ALTER TABLE bank_Users
+--ADD CONSTRAINT user_info_username UNIQUE (username);
 
-ALTER TABLE bank_Users
-ADD CONSTRAINT user_info_password UNIQUE (password);
+--ALTER TABLE bank_Users
+--ADD CONSTRAINT user_info_password UNIQUE (password);
 
-ALTER TABLE bank_Users
-ADD CONSTRAINT user_info_email_Address UNIQUE (email_Address);
+--ALTER TABLE bank_Users
+--ADD CONSTRAINT user_info_email_Address UNIQUE (email_Address);
 
 create table customers(
   id int not null AUTO_INCREMENT UNIQUE,

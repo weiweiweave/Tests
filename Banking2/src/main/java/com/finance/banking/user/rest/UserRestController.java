@@ -5,6 +5,7 @@ import com.finance.banking.user.dto.CreateUserDTO;
 import com.finance.banking.user.dto.UserDTO;
 import com.finance.banking.user.dto.UserIdDTO;
 import com.finance.banking.user.mapper.UserMapper;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class UserRestController {
     }
 
     @PostMapping("/user")
-    public UserIdDTO createUser(@RequestBody CreateUserDTO createUserDTO) {
+    public UserIdDTO createUser(@RequestBody @Valid CreateUserDTO createUserDTO) {
         User user = mapper.toUser(createUserDTO);
 
         user.setId(Long.valueOf(0));
