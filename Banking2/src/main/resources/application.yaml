@@ -38,6 +38,7 @@ server:
 #Logging JPA Queries Via Loggers
 #The first line shows the sql statement
 #the second statement shows the sql values
+#?logging.level.org.hibernate.orm.jdbc.bind=trace
 logging:
   level:
     org:
