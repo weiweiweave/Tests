@@ -9,5 +9,4 @@ public class ExceptionJSONInfo {
 
     private String url;
     private String message;
-    private String cause;
 }

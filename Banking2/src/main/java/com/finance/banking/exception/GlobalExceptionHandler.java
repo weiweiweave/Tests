@@ -18,20 +18,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public @ResponseBody ExceptionJSONInfo handleDataIntegrityViolation(HttpServletRequest request, Exception ex) {
-        //ResponseEntity<Object>
-        //return new ResponseEntity<>("DataIntegrityViolationException", HttpStatus.INTERNAL_SERVER_ERROR);
-        logger.trace("DataIntegrityViolationException Occured:: Cause="+ ExceptionUtils.getRootCauseMessage(ex));
-        //return "database_error";
 
-        logger.trace("DataIntegrityViolationException Occured:: Cause="+ ExceptionUtils.getStackTrace(ex));
-
-
-
-
+        logger.trace("DataIntegrityViolationException Occured:: Message="+ ex.getMessage());
         ExceptionJSONInfo response = new ExceptionJSONInfo();
         response.setUrl(request.getRequestURL().toString());
-        //response.setMessage(ex.getStackTrace().toString());
-        response.setCause(ex.getLocalizedMessage());
+        response.setMessage("DataIntegrityViolationException Occured.");
 
         return response;
     }
