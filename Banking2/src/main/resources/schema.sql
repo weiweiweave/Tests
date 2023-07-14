@@ -6,7 +6,6 @@ create table bank_Users(
   creation_Date_Time datetime(6) null,
   PRIMARY KEY ( id ),
   CONSTRAINT user_info_username UNIQUE (username),
-  CONSTRAINT user_info_password UNIQUE (password),
   CONSTRAINT user_info_email_Address UNIQUE (email_Address)
 );
 

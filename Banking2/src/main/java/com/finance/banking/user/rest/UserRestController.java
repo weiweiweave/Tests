@@ -13,11 +13,12 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.finance.banking.user.entity.User;
@@ -70,7 +71,7 @@ public class UserRestController {
         List<User> userList = userService.findAll();
         //logger.trace(userList.toString());
         List<UserDTO> userDTOList = userList.stream().map(UserMapper::toDTO).collect(Collectors.toList());
-        //logger.trace(userDTOList.toString());
+        logger.trace(userDTOList.toString());
         return userDTOList;
     }
 
@@ -105,6 +106,26 @@ public class UserRestController {
         ExceptionJSONInfo response = new ExceptionJSONInfo();
         response.setUrl(request.getRequestURL().toString());
         response.setMessage(ex.getMessage());
+
+        return response;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public @ResponseBody ExceptionJSONInfo handleValidationExceptions(
+            HttpServletRequest request,
+            MethodArgumentNotValidException ex) {
+
+        ExceptionJSONInfo response = new ExceptionJSONInfo();
+        response.setUrl(request.getRequestURL().toString());
+
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        response.setMessage(errors.toString());
 
         return response;
     }
