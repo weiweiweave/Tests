@@ -20,6 +20,7 @@ create table bank_Users(
 
 create table customers(
   id int not null AUTO_INCREMENT UNIQUE,
+  uuid varchar(100) null,
   staff_id_who_key_in varchar(100) null,
   company varchar(100) null,
   fund_Source varchar(100) null,

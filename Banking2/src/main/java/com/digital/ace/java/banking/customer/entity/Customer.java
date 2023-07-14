@@ -2,10 +2,7 @@ package com.digital.ace.java.banking.customer.entity;
 
 import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,12 +12,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "customers")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "uuid")
+    private String uuid;
 
     @Column(name = "staff_id_who_key_in")
     private String staffIdWhoKeyIn;
@@ -85,33 +86,5 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
         this.jobTitle = jobTitle;
         this.creationDateTime = creationDateTime;
-    }
-
-    public Customer(String firstName, String lastName, String emailAddress) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", staffIdWhoKeyIn='" + staffIdWhoKeyIn + '\'' +
-                ", company='" + company + '\'' +
-                ", fundSource='" + fundSource + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", joinedDate=" + joinedDate +
-                ", nric='" + nric + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", sex='" + sex + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", phone='" + phone + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", creationDateTime=" + creationDateTime +
-                '}';
     }
 }
