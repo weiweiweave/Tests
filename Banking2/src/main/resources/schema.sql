@@ -35,5 +35,6 @@ create table customers(
   date_Of_Birth date null,
   job_Title varchar(100) null,
   creation_Date_Time datetime(6) null,
-  PRIMARY KEY ( id )
+  PRIMARY KEY ( id ),
+  CONSTRAINT customer_info_nric UNIQUE (nric)
 );
