@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
 public class UserMapper {
 
     public static UserDTO toDTO(User user) {
@@ -17,7 +16,7 @@ public class UserMapper {
         return new UserDTO(username,email);
     }
 
-    public User toUser(CreateUserDTO createUserDTO) {
+    public static User toUser(CreateUserDTO createUserDTO) {
         return new User(createUserDTO.getUsername(), createUserDTO.getPassword(), createUserDTO.getEmail(), LocalDateTime.now());
     }
 }

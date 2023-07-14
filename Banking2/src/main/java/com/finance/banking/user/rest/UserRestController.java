@@ -34,7 +34,7 @@ public class UserRestController {
 
     private UserService userService;
 
-    private UserMapper mapper = new UserMapper();
+    //private UserMapper mapper = new UserMapper();
 
     @Autowired
     UserRepository userRepository;
@@ -51,7 +51,7 @@ public class UserRestController {
 
     @PostMapping("/user")
     public UserIdDTO createUser(@RequestBody @Valid CreateUserDTO createUserDTO)  throws Exception {
-        User user = mapper.toUser(createUserDTO);
+        User user = UserMapper.toUser(createUserDTO);
 
         user.setId(Long.valueOf(0));
 
