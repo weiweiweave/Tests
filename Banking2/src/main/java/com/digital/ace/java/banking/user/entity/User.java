@@ -22,15 +22,15 @@ public class User {
     private Long id;
 
     @Column(name = "username")
-    @CsvBindByName(column = "Username")
+    //@CsvBindByName(column = "Username")
     private String username;
 
     @Column(name = "password")
-    @CsvBindByName(column = "Password")
+    //@CsvBindByName(column = "Password")
     private String password;
 
     @Column(name = "email_Address")
-    @CsvBindByName(column = "Email")
+    //@CsvBindByName(column = "Email")
     private String emailAddress;
 
     @Column(name = "creation_Date_Time")

@@ -1,6 +1,7 @@
 package com.digital.ace.java.banking.bootstrap;
 
 import com.digital.ace.java.banking.user.dao.UserRepository;
+import com.digital.ace.java.banking.user.dto.CreateUserDTO;
 import com.digital.ace.java.banking.user.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,12 +36,12 @@ public class UsersBootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-            List<User> csvToBean = new CsvToBeanBuilder(new FileReader(usersPath)).withType(User.class).build().parse();
+            List<CreateUserDTO> csvToBean = new CsvToBeanBuilder(new FileReader(usersPath)).withType(CreateUserDTO.class).build().parse();
 
-            Iterator<User> csvUserIterator = csvToBean.iterator();
+            Iterator<CreateUserDTO> csvUserIterator = csvToBean.iterator();
 
             while (csvUserIterator.hasNext()) {
-                User csvUser = csvUserIterator.next();
+                CreateUserDTO csvUser = csvUserIterator.next();
 
                 User newUser = new User(
                         csvUser.getUsername(),

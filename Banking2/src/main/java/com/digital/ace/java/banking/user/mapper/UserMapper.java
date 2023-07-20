@@ -1,6 +1,6 @@
 package com.digital.ace.java.banking.user.mapper;
 
-import com.digital.ace.java.banking.user.dto.CreateUserDTO;
+import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 import com.digital.ace.java.banking.user.dto.UserDTO;
 import com.digital.ace.java.banking.user.entity.User;
 
@@ -15,7 +15,7 @@ public class UserMapper {
         return new UserDTO(username,email);
     }
 
-    public static User toUser(CreateUserDTO createUserDTO) {
-        return new User(createUserDTO.getUsername(), createUserDTO.getPassword(), createUserDTO.getEmail(), LocalDateTime.now());
+    public static User toUser(CreateUserRequest createUserRequest) {
+        return new User(createUserRequest.getUsername(), createUserRequest.getPassword(), createUserRequest.getEmail(), LocalDateTime.now());
     }
 }

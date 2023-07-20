@@ -4,7 +4,7 @@ package com.digital.ace.java.banking.user.rest;
 import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
 import com.digital.ace.java.banking.exception.UserNotFoundException;
 import com.digital.ace.java.banking.user.dao.UserRepository;
-import com.digital.ace.java.banking.user.dto.CreateUserDTO;
+import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 import com.digital.ace.java.banking.user.dto.UserDTO;
 import com.digital.ace.java.banking.user.dto.UserIdDTO;
 import com.digital.ace.java.banking.user.entity.User;
@@ -51,8 +51,8 @@ public class UserRestController {
     }
 
     @PostMapping("/user")
-    public UserIdDTO createUser(@RequestBody @Valid CreateUserDTO createUserDTO)  throws Exception {
-        User user = UserMapper.toUser(createUserDTO);
+    public UserIdDTO createUser(@RequestBody @Valid CreateUserRequest createUserRequest)  throws Exception {
+        User user = UserMapper.toUser(createUserRequest);
 
         user.setId(Long.valueOf(0));
 
