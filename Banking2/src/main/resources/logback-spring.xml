@@ -40,8 +40,8 @@
         <appender-ref ref="Console" />
     </root>
 
-<!-- LOG "com.finance*" at TRACE level -->
-    <logger name="com.finance" level="trace" additivity="false">
+<!-- LOG "com.digital*" at TRACE level -->
+    <logger name="com.digital" level="trace" additivity="false">
         <!--<appender-ref ref="RollingFile" />-->
         <appender-ref ref="Console" />
     </logger>

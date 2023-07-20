@@ -71,7 +71,7 @@ public class UserRestController {
         List<User> userList = userService.findAll();
         //logger.trace(userList.toString());
         List<UserDTO> userDTOList = userList.stream().map(UserMapper::toDTO).collect(Collectors.toList());
-        logger.trace(userDTOList.toString());
+        //logger.trace(userDTOList.toString());
         return userDTOList;
     }
 
