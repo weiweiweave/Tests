@@ -9,6 +9,9 @@ import lombok.Setter;
 @Setter
 public class CreateCustomerDTO {
 
+    @CsvBindByName(column = "Uuid")
+    private String uuid;
+
     @CsvBindByName(column = "StaffIdWhoKeyIn")
     private String staffIdWhoKeyIn;
 

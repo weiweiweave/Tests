@@ -47,6 +47,7 @@ public class CustomersBootStrapData implements CommandLineRunner {
                 LocalDate csvDateOfBirth = LocalDate.parse(csvCustomer.getDateOfBirth());
 
                 Customer newCustomer = new Customer(
+                        csvCustomer.getUuid(),
                         csvCustomer.getStaffIdWhoKeyIn(),
                         csvCustomer.getCompany(),
                         csvCustomer.getFundSource(),

@@ -68,9 +68,10 @@ public class Customer {
     @Column(name = "creation_Date_Time")
     private LocalDateTime creationDateTime;
 
-    public Customer(String staffIdWhoKeyIn, String company, String fundSource, String address, String city, LocalDate joinedDate,
+    public Customer(String uuid, String staffIdWhoKeyIn, String company, String fundSource, String address, String city, LocalDate joinedDate,
             String nric, String firstName, String lastName, String sex, String emailAddress, String phone, LocalDate dateOfBirth, String jobTitle,
                     LocalDateTime creationDateTime) {
+        this.uuid = uuid;
         this.staffIdWhoKeyIn = staffIdWhoKeyIn;
         this.company = company;
         this.fundSource = fundSource;
