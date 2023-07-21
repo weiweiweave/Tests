@@ -1,17 +1,24 @@
 package com.digital.ace.java.banking.customer.rest;
 
+import com.digital.ace.java.banking.customer.dao.CustomerRepository;
 import com.digital.ace.java.banking.customer.dto.CustomerDTO;
 import com.digital.ace.java.banking.customer.entity.Customer;
 import com.digital.ace.java.banking.customer.mapper.CustomerMapper;
 import com.digital.ace.java.banking.customer.service.CustomerService;
+import com.digital.ace.java.banking.exception.CustomerNotFoundException;
+import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
+import com.digital.ace.java.banking.exception.UserNotFoundException;
+import com.digital.ace.java.banking.user.dto.UserDTO;
+import com.digital.ace.java.banking.user.entity.User;
+import com.digital.ace.java.banking.user.mapper.UserMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,6 +28,9 @@ public class CustomerRestController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private CustomerService customerService;
+
+    @Autowired
+    CustomerRepository customerRepository;
 
     @Autowired
     public CustomerRestController(CustomerService theCustomerService) {
@@ -36,4 +46,20 @@ public class CustomerRestController {
         //logger.trace(customerDTOList.toString());
         return customerDTOList;
     }
+
+    @GetMapping("/customer/{id}")
+    public CustomerDTO getCustomer(@PathVariable("id") Long id) throws CustomerNotFoundException {
+
+        Optional<Customer> optionalCustomer = customerService.find(id);
+        Customer customer = new Customer();
+
+        if(optionalCustomer.isPresent()) {
+            customer = optionalCustomer.get();
+        }
+        else {
+            throw new CustomerNotFoundException(id);
+        }
+        return CustomerMapper.toDTO(customer);
+    }
+
 }

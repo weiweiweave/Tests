@@ -35,8 +35,6 @@ public class UserRestController {
 
     private UserService userService;
 
-    //private UserMapper mapper = new UserMapper();
-
     @Autowired
     UserRepository userRepository;
 
@@ -90,18 +88,13 @@ public class UserRestController {
         return UserMapper.toDTO(user);
     }
 
+    //Controller Based Exception Handling
+    //to handle exceptions thrown by request handling (@RequestMapping)
+    //methods in the same controller.
+    //Handle exceptions without the @ResponseStatus annotation
+    // (typically predefined exceptions that you didn't write)
     @ExceptionHandler(NoSuchElementException.class)
     public @ResponseBody ExceptionJSONInfo handleNoSuchElementException(HttpServletRequest request, Exception ex) {
-
-        ExceptionJSONInfo response = new ExceptionJSONInfo();
-        response.setUrl(request.getRequestURL().toString());
-        response.setMessage(ex.getMessage());
-
-        return response;
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    public @ResponseBody ExceptionJSONInfo handleUserNotFoundException(HttpServletRequest request, Exception ex) {
 
         ExceptionJSONInfo response = new ExceptionJSONInfo();
         response.setUrl(request.getRequestURL().toString());

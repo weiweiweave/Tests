@@ -1,7 +1,14 @@
 package com.digital.ace.java.banking.customer.dto;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CreateCustomerRequest {
 
+    @NotNull(message = "Invalid staffIdWhoKeyIn: staffIdWhoKeyIn is NULL")
     private String staffIdWhoKeyIn;
 
     private String company;
