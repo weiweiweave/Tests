@@ -63,7 +63,6 @@ public class UserRestController {
         return new UserIdDTO(savedUser.getId());
     }
 
-
     @GetMapping("/users")
     public List<UserDTO> listUsers() {
         List<User> userList = userService.findAll();
