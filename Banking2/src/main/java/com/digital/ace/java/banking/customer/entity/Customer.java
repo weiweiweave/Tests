@@ -29,7 +29,7 @@ public class Customer {
     @Column(name = "company")
     private String company;
 
-    @Column(name = "fund_Source")
+    @Column(name = "fund_source")
     private String fundSource;
 
     @Column(name = "address")
@@ -38,34 +38,34 @@ public class Customer {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "joined_Date")
+    @Column(name = "joined_date")
     private LocalDate joinedDate;
 
     @Column(name = "nric")
     private String nric;
 
-    @Column(name = "first_Name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_Name")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "sex")
     private String sex;
 
-    @Column(name = "email_Address")
+    @Column(name = "email_address")
     private String emailAddress;
 
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "date_Of_Birth")
+    @Column(name = "date_Of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "job_Title")
+    @Column(name = "job_title")
     private String jobTitle;
 
-    @Column(name = "creation_Date_Time")
+    @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
     public Customer(String uuid, String staffIdWhoKeyIn, String company, String fundSource, String address, String city, LocalDate joinedDate,

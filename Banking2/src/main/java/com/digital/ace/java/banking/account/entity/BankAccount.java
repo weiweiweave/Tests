@@ -1,4 +1,4 @@
-package com.digital.ace.java.banking.bankAccount.entity;
+package com.digital.ace.java.banking.account.entity;
 
 import lombok.Getter;
 import lombok.Setter;

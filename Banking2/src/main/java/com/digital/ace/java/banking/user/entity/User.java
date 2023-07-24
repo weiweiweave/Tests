@@ -29,11 +29,11 @@ public class User {
     //@CsvBindByName(column = "Password")
     private String password;
 
-    @Column(name = "email_Address")
+    @Column(name = "email_address")
     //@CsvBindByName(column = "Email")
     private String emailAddress;
 
-    @Column(name = "creation_Date_Time")
+    @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
     public User(String username, String password, String emailAddress, LocalDateTime creationDateTime) {

@@ -2,11 +2,11 @@ create table bank_Users(
   id int not null AUTO_INCREMENT,
   username varchar(100) null,
   password varchar(100) null,
-  email_Address varchar(100) null,
-  creation_Date_Time datetime(6) null,
+  email_address varchar(100) null,
+  creation_date_time datetime(6) null,
   PRIMARY KEY ( id ),
   CONSTRAINT user_info_username UNIQUE (username),
-  CONSTRAINT user_info_email_Address UNIQUE (email_Address)
+  CONSTRAINT user_info_email_address UNIQUE (email_address)
 );
 
 --ALTER TABLE bank_Users
@@ -23,19 +23,37 @@ create table customers(
   uuid varchar(100) null,
   staff_id_who_key_in varchar(100) null,
   company varchar(100) null,
-  fund_Source varchar(100) null,
+  fund_source varchar(100) null,
   address varchar(500) null,
   city varchar(100) null,
-  joined_Date date null,
+  joined_date date null,
   nric varchar(100) null,
-  first_Name varchar(100) null,
-  last_Name varchar(100) null,
+  first_name varchar(100) null,
+  last_name varchar(100) null,
   sex varchar(100) null,
-  email_Address varchar(100) null,
+  email_address varchar(100) null,
   phone varchar(100) null,
-  date_Of_Birth date null,
-  job_Title varchar(100) null,
-  creation_Date_Time datetime(6) null,
+  date_Of_birth date null,
+  job_title varchar(100) null,
+  creation_date_time datetime(6) null,
   PRIMARY KEY ( id ),
   CONSTRAINT customer_info_nric UNIQUE (nric)
+);
+
+create table bank_Accounts(
+  id int not null AUTO_INCREMENT,
+  staff_id_who_key_in varchar(100) null,
+  creation_Date_Time datetime(6) null,
+  customer_nric varchar(100) null,
+  balance double null,
+  account_no varchar(100) null,
+  PRIMARY KEY ( id ),
+  CONSTRAINT bank_account_info_account_no UNIQUE (account_no)
+);
+
+create table saving_Account(
+  id int not null AUTO_INCREMENT,
+  interest_rate double null,
+  min_amount_to_cal_interest double null,
+  PRIMARY KEY ( id )
 );

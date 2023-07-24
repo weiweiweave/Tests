@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class CreateCustomerRequest {
 
+    private String uuid;
+
     @NotNull(message = "Invalid staffIdWhoKeyIn: staffIdWhoKeyIn is NULL")
     private String staffIdWhoKeyIn;
 
