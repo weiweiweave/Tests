@@ -1,2 +1,2 @@
-Index,StaffIdWhoKeyIn,CreatedDate,CustomerNric,InterestRate,Balance,MinAmountToCalInterest,accountNo
+Index,StaffIdWhoKeyIn,CreatedDate,CustomerNric,InterestRate,Balance,MinAmountToCalInterest,AccountNo
 1,irisWatson,2022-10-20,S1234567A,8,0,3000,101-3001-Calista-01

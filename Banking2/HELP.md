@@ -33,6 +33,8 @@ http://localhost:8081/swagger-ui/index.html
 ### Endpoints
 http://localhost:8080/api/customers
 
+http://localhost:8081/api/hello
+
 http://localhost:8081/createCustomer?lastName=mary
 
 http://localhost:8081/api/customers

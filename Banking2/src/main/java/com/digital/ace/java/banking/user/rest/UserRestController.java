@@ -29,8 +29,6 @@ import com.digital.ace.java.banking.user.service.UserService;
 @RequestMapping("/api")
 public class UserRestController {
 
-    private static final String template = "Hello, %s!";
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private UserService userService;
@@ -41,11 +39,6 @@ public class UserRestController {
     @Autowired
     public UserRestController(UserService theUserService) {
         userService = theUserService;
-    }
-
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return String.format("Hello %s!", name);
     }
 
     @PostMapping("/user")
