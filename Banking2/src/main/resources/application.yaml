@@ -59,11 +59,6 @@ logging:
 #          jdbc:
 #            bind: trace
 
-sample:
-  users: src\main\resources\users.csv
-  customers: src\main\resources\customers.csv
-  savingDeposit: src\main\resources\savingDeposit.csv
-
 #for actuator
 management:
   endpoints:
@@ -72,11 +67,11 @@ management:
         #include: health,info
         #expose all endpoints
         include: "*"
+        #exclude individual endpoint with comma-delimited list
+        #exclude: health
   info:
     env:
       enabled: true
-
-
 
 info:
   app:
@@ -84,3 +79,9 @@ info:
     description: An exercise for Spring
     version: 1.0.0
 
+
+#custom properties
+sample:
+  users: src\main\resources\users.csv
+  customers: src\main\resources\customers.csv
+  savingDeposit: src\main\resources\savingDeposit.csv

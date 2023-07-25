@@ -20,6 +20,7 @@ public class SavingsBootStrapData implements CommandLineRunner  {
 
     private AccountRepository accountRepository;
 
+    //inject properties for sample.savingDeposit
     @Value("${sample.savingDeposit}")
     String usersPath;
 

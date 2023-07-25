@@ -23,6 +23,7 @@ public class UsersBootStrapData implements CommandLineRunner {
 
     private UserRepository userRepository;
 
+    //inject properties for sample.users
     @Value("${sample.users}")
     String usersPath;
 
