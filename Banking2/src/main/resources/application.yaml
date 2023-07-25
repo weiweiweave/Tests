@@ -29,6 +29,10 @@ spring:
   sql:
     init:
       mode: always
+  security:
+    user:
+      name: scott
+      password: tiger
 
 server:
   port: 8081
@@ -60,4 +64,23 @@ sample:
   customers: src\main\resources\customers.csv
   savingDeposit: src\main\resources\savingDeposit.csv
 
+#for actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        #include: health,info
+        #expose all endpoints
+        include: "*"
+  info:
+    env:
+      enabled: true
+
+
+
+info:
+  app:
+    name: Simple Banking App
+    description: An exercise for Spring
+    version: 1.0.0
 

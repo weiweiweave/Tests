@@ -39,3 +39,12 @@ http://localhost:8081/createCustomer?lastName=mary
 
 http://localhost:8081/api/customers
 
+http://localhost:8081/actuator/health
+
+http://localhost:8081/actuator/info
+
+http://localhost:8081/actuator/beans
+
+http://localhost:8081/actuator/threaddump
+
+http://localhost:8081/actuator/mappings
