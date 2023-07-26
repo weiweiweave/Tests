@@ -62,13 +62,23 @@ create table bank_Accounts(
   CONSTRAINT bank_account_info_account_no UNIQUE (account_no)
 );
 
-create table saving_Account(
+create table saving_Accounts(
   id int not null AUTO_INCREMENT,
   interest_rate double null,
   min_amount_to_cal_interest double null,
   PRIMARY KEY ( id )
 );
 
-create table fixedDeposit_Account(
+create table fixedDeposit_Accounts(
 
+);
+
+create table bank_transactions(
+  id int not null AUTO_INCREMENT,
+  staff_id_who_key_in varchar(100) null,
+  account_no varchar(100) null,
+  amount double null,
+  is_credit boolean null,
+  remarks varchar(100) null,
+  PRIMARY KEY ( id )
 );

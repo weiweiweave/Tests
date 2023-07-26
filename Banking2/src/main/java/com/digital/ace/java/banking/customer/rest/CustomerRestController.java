@@ -35,9 +35,6 @@ public class CustomerRestController {
     private CustomerService customerService;
 
     @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
     public CustomerRestController(CustomerService theCustomerService) {
         customerService = theCustomerService;
     }

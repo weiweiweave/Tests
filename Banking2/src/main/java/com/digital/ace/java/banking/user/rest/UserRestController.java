@@ -34,9 +34,6 @@ public class UserRestController {
     private UserService userService;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     public UserRestController(UserService theUserService) {
         userService = theUserService;
     }
