@@ -43,8 +43,9 @@ server:
     include-exception: false
   #set the context path of application
   #all requests should be prefixed with /api
+  #doesn't seem to work as intended
   #servlet:
-  #  context-path: /api
+    #context-path: /api
 
 
 #Logging JPA Queries Via Loggers
