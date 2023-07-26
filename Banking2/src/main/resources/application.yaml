@@ -90,3 +90,4 @@ sample:
   users: src\main\resources\users.csv
   customers: src\main\resources\customers.csv
   savingDeposit: src\main\resources\savingDeposit.csv
+  accountType: src\main\resources\accountType.csv

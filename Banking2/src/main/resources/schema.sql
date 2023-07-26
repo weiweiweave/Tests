@@ -40,14 +40,25 @@ create table customers(
   CONSTRAINT customer_info_nric UNIQUE (nric)
 );
 
+create table account_Type(
+  id int not null AUTO_INCREMENT,
+  account_description varchar(100) null,
+  PRIMARY KEY ( id )
+);
+
 create table bank_Accounts(
   id int not null AUTO_INCREMENT,
+  uuid varchar(100) null,
   staff_id_who_key_in varchar(100) null,
-  creation_Date_Time datetime(6) null,
+  created_date date null,
   customer_nric varchar(100) null,
   balance double null,
   account_no varchar(100) null,
+  account_type int null,
+  account_type_id int null,
+  creation_date_time datetime(6) null,
   PRIMARY KEY ( id ),
+  CONSTRAINT FK_account_type FOREIGN KEY (account_type) REFERENCES account_Type(id),
   CONSTRAINT bank_account_info_account_no UNIQUE (account_no)
 );
 
@@ -56,4 +67,8 @@ create table saving_Account(
   interest_rate double null,
   min_amount_to_cal_interest double null,
   PRIMARY KEY ( id )
+);
+
+create table fixedDeposit_Account(
+
 );

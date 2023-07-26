@@ -1,2 +1,3 @@
-Index,StaffIdWhoKeyIn,CreatedDate,CustomerNric,InterestRate,Balance,MinAmountToCalInterest,AccountNo
-1,irisWatson,2022-10-20,S1234567A,8,0,3000,101-3001-Calista-01
+Index,Uuid,StaffIdWhoKeyIn,CreatedDate,CustomerNric,InterestRate,Balance,MinAmountToCalInterest,AccountNo
+1,531e2c73-442c-4ed5-8443-da3ea3d18f75,irisWatson,2022-10-20,S1234567A,8,0,3000,101-3001-Calista-01
+2,ed387934-d8ea-4780-9b0a-e9e054bae37f,celesteSlater,2023-01-09,S1122334D,9,0,4000,101-3001-Kyla-01
