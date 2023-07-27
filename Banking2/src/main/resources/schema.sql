@@ -80,5 +80,6 @@ create table bank_transactions(
   amount double null,
   is_credit boolean null,
   remarks varchar(100) null,
+  creation_date_time datetime(6) null,
   PRIMARY KEY ( id )
 );
