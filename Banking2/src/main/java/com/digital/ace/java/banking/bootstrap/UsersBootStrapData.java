@@ -1,8 +1,8 @@
 package com.digital.ace.java.banking.bootstrap;
 
-import com.digital.ace.java.banking.user.dao.UserRepository;
 import com.digital.ace.java.banking.user.dto.CreateUserDTO;
 import com.digital.ace.java.banking.user.entity.User;
+import com.digital.ace.java.banking.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +21,7 @@ import java.util.List;
 @Component
 public class UsersBootStrapData implements CommandLineRunner {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     //inject properties for sample.users
     @Value("${sample.users}")
@@ -29,8 +29,8 @@ public class UsersBootStrapData implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(UsersBootStrapData.class);
 
-    public UsersBootStrapData(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UsersBootStrapData(UserService userService) {
+        this.userService = userService;
     }
 
     //Spring Boot invokes its run() method after it starts the context and before the application starts.
@@ -50,7 +50,7 @@ public class UsersBootStrapData implements CommandLineRunner {
                         csvUser.getEmailAddress(),
                         LocalDateTime.now());
 
-                userRepository.save(newUser);
+                userService.save(newUser);
             }
 
     }

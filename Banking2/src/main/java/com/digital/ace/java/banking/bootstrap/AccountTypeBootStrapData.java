@@ -1,11 +1,8 @@
 package com.digital.ace.java.banking.bootstrap;
 
-import com.digital.ace.java.banking.account.dao.AccountTypeRepository;
 import com.digital.ace.java.banking.account.dto.CreateAccountTypeDTO;
 import com.digital.ace.java.banking.account.entity.AccountType;
-import com.digital.ace.java.banking.user.dao.UserRepository;
-import com.digital.ace.java.banking.user.dto.CreateUserDTO;
-import com.digital.ace.java.banking.user.entity.User;
+import com.digital.ace.java.banking.account.service.AccountTypeService;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +12,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
-import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,7 +19,7 @@ import java.util.List;
 @Component
 public class AccountTypeBootStrapData implements CommandLineRunner {
 
-    private AccountTypeRepository accountTypeRepository;
+    private AccountTypeService accountTypeService;
 
     //inject properties for sample.accountType
     @Value("${sample.accountType}")
@@ -31,8 +27,8 @@ public class AccountTypeBootStrapData implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(AccountTypeBootStrapData.class);
 
-    public AccountTypeBootStrapData(AccountTypeRepository accountTypeRepository) {
-        this.accountTypeRepository = accountTypeRepository;
+    public AccountTypeBootStrapData(AccountTypeService accountTypeService) {
+        this.accountTypeService = accountTypeService;
     }
 
     //Spring Boot invokes its run() method after it starts the context and before the application starts.
@@ -49,7 +45,7 @@ public class AccountTypeBootStrapData implements CommandLineRunner {
                 AccountType newAccountType = new AccountType(
                         csvAccountType.getAccountDescription());
 
-                accountTypeRepository.save(newAccountType);
+                accountTypeService.save(newAccountType);
             }
 
     }

@@ -24,6 +24,11 @@ public class AccountTypeServiceImpl implements AccountTypeService {
     }
 
     @Override
+    public AccountType save(AccountType accountType) {
+        return accountTypeRepository.save(accountType);
+    }
+
+    @Override
     public Optional<AccountType> find(Long id) {
 
         Optional<AccountType> optionalAccountType = accountTypeRepository.findById(id);

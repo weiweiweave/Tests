@@ -5,6 +5,8 @@ import com.digital.ace.java.banking.account.dao.SavingsAccountRepository;
 import com.digital.ace.java.banking.account.dto.CreateBankAccountDTO;
 import com.digital.ace.java.banking.account.entity.BankAccount;
 import com.digital.ace.java.banking.account.entity.SavingsAccount;
+import com.digital.ace.java.banking.account.service.BankAccountService;
+import com.digital.ace.java.banking.account.service.SavingsAccountService;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +25,9 @@ import java.util.List;
 @Component
 public class SavingsBootStrapData implements CommandLineRunner  {
 
-    private BankAccountRepository bankAccountRepository;
+    private BankAccountService bankAccountService;
 
-    private SavingsAccountRepository savingsAccountRepository;
+    private SavingsAccountService savingsAccountService;
 
     //inject properties for sample.savingDeposit
     @Value("${sample.savingDeposit}")
@@ -33,9 +35,9 @@ public class SavingsBootStrapData implements CommandLineRunner  {
 
     private final Logger logger = LoggerFactory.getLogger(SavingsBootStrapData.class);
 
-    public SavingsBootStrapData(BankAccountRepository bankAccountRepository, SavingsAccountRepository savingsAccountRepository) {
-        this.bankAccountRepository = bankAccountRepository;
-        this.savingsAccountRepository = savingsAccountRepository;
+    public SavingsBootStrapData(BankAccountService bankAccountService, SavingsAccountService savingsAccountService) {
+        this.bankAccountService = bankAccountService;
+        this.savingsAccountService = savingsAccountService;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class SavingsBootStrapData implements CommandLineRunner  {
 
             //logger.trace(newSavingsAccount.toString());
 
-            SavingsAccount savedSavingsAccount = savingsAccountRepository.save(newSavingsAccount);
+            SavingsAccount savedSavingsAccount = savingsAccountService.save(newSavingsAccount);
 
             //logger.trace(savedSavingsAccount.toString());
 
@@ -77,7 +79,7 @@ public class SavingsBootStrapData implements CommandLineRunner  {
 
             //logger.trace(newBankAccount.toString());
 
-            bankAccountRepository.save(newBankAccount);
+            bankAccountService.save(newBankAccount);
         }
     }
 }

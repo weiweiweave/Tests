@@ -1,8 +1,8 @@
 package com.digital.ace.java.banking.bootstrap;
 
-import com.digital.ace.java.banking.transaction.dao.TransactionRepository;
 import com.digital.ace.java.banking.transaction.dto.CreateSavingDepositTransactionDTO;
 import com.digital.ace.java.banking.transaction.entity.BankTransaction;
+import com.digital.ace.java.banking.transaction.service.BankTransactionService;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ import java.util.List;
 @Component
 public class SavingsDepositTransactionsBootStrapData implements CommandLineRunner {
 
-    private TransactionRepository transactionRepository;
+    private BankTransactionService bankTransactionService;
 
     //inject properties for sample.savingDepositTransactions
     @Value("${sample.savingDepositTransactions}")
@@ -28,8 +28,8 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
 
     private final Logger logger = LoggerFactory.getLogger(SavingsDepositTransactionsBootStrapData.class);
 
-    public SavingsDepositTransactionsBootStrapData(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
+    public SavingsDepositTransactionsBootStrapData(BankTransactionService bankTransactionService) {
+        this.bankTransactionService = bankTransactionService;
     }
 
     //Spring Boot invokes its run() method after it starts the context and before the application starts.
@@ -55,7 +55,7 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
                         csvCreateSavingDepositTransaction.getRemarks(),
                         LocalDateTime.now());
 
-                transactionRepository.save(newBankTransaction);
+                bankTransactionService.save(newBankTransaction);
             }
 
     }

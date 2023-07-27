@@ -1,8 +1,8 @@
 package com.digital.ace.java.banking.bootstrap;
 
-import com.digital.ace.java.banking.customer.dao.CustomerRepository;
 import com.digital.ace.java.banking.customer.dto.CreateCustomerDTO;
 import com.digital.ace.java.banking.customer.entity.Customer;
+import com.digital.ace.java.banking.customer.service.CustomerService;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ import java.util.List;
 @Component
 public class CustomersBootStrapData implements CommandLineRunner {
 
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     //inject properties for sample.customers
     @Value("${sample.customers}")
@@ -29,8 +29,8 @@ public class CustomersBootStrapData implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(CustomersBootStrapData.class);
 
-    public CustomersBootStrapData(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomersBootStrapData(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     //Spring Boot invokes its run() method after it starts the context and before the application starts.
@@ -65,7 +65,7 @@ public class CustomersBootStrapData implements CommandLineRunner {
                         csvCustomer.getJobTitle(),
                         LocalDateTime.now());
 
-                customerRepository.save(newCustomer);
+                customerService.save(newCustomer);
             }
 
     }

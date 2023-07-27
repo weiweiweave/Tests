@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<BankTransaction, Long>  {
+public interface BankTransactionRepository extends JpaRepository<BankTransaction, Long>  {
 
-    @Query(value = "SELECT * FROM transactions t", nativeQuery = true)
+    @Query(value = "SELECT * FROM bank_transactions t", nativeQuery = true)
     List<BankTransaction> findAll();
 }

@@ -1,6 +1,7 @@
 package com.digital.ace.java.banking.account.service;
 
 import com.digital.ace.java.banking.account.dao.BankAccountRepository;
+import com.digital.ace.java.banking.account.entity.AccountType;
 import com.digital.ace.java.banking.account.entity.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,12 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public Optional<BankAccount> find(Long id) {
         Optional<BankAccount> optionalBankAccount = bankAccountRepository.findById(id);
+        return optionalBankAccount;
+    }
+
+    @Override
+    public Optional<BankAccount> findByAccountNo(String accountNo) {
+        Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByAccountNo(accountNo);
         return optionalBankAccount;
     }
 }
