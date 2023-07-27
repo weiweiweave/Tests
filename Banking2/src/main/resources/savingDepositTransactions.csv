@@ -1,3 +1,5 @@
 Index,Uuid,StaffIdWhoKeyIn,AccountNo,Amount,IsCredit,Remarks
-1,531e2c73-442c-4ed5-8443-da3ea3d18f75,ceciliaChapman,101-3001-Calista-01,600,true,"first deposit"
-2,ed387934-d8ea-4780-9b0a-e9e054bae37f,irisWatson,101-3001-Kyla-01,5000,true,"big saver"
+1,531e2c73-442c-4ed5-8443-da3ea3d18f75,bankManager,101-3001-Michael-01,600,true,"first deposit"
+2,ed387934-d8ea-4780-9b0a-e9e054bae37f,bankTeller,101-3001-Taylor-01,5000,true,"big saver"
+3,531e2c73-442c-4ed5-8443-da3ea3d18f75,bankManager,101-3001-Michael-01,700,true,"second deposit"
+4,531e2c73-442c-4ed5-8443-da3ea3d18f75,bankManager,101-3001-Michael-01,500,true,"third deposit"

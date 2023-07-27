@@ -3,7 +3,6 @@ package com.digital.ace.java.banking.user.rest;
 
 import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
 import com.digital.ace.java.banking.exception.UserNotFoundException;
-import com.digital.ace.java.banking.user.dao.UserRepository;
 import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 import com.digital.ace.java.banking.user.dto.UserDTO;
 import com.digital.ace.java.banking.user.dto.UserIdDTO;

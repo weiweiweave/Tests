@@ -1,6 +1,6 @@
 package com.digital.ace.java.banking.bootstrap;
 
-import com.digital.ace.java.banking.account.dao.AccountRepository;
+import com.digital.ace.java.banking.account.dao.BankAccountRepository;
 import com.digital.ace.java.banking.account.dao.SavingsAccountRepository;
 import com.digital.ace.java.banking.account.dto.CreateBankAccountDTO;
 import com.digital.ace.java.banking.account.entity.BankAccount;
@@ -23,7 +23,7 @@ import java.util.List;
 @Component
 public class SavingsBootStrapData implements CommandLineRunner  {
 
-    private AccountRepository accountRepository;
+    private BankAccountRepository bankAccountRepository;
 
     private SavingsAccountRepository savingsAccountRepository;
 
@@ -33,8 +33,8 @@ public class SavingsBootStrapData implements CommandLineRunner  {
 
     private final Logger logger = LoggerFactory.getLogger(SavingsBootStrapData.class);
 
-    public SavingsBootStrapData(AccountRepository accountRepository, SavingsAccountRepository savingsAccountRepository) {
-        this.accountRepository = accountRepository;
+    public SavingsBootStrapData(BankAccountRepository bankAccountRepository, SavingsAccountRepository savingsAccountRepository) {
+        this.bankAccountRepository = bankAccountRepository;
         this.savingsAccountRepository = savingsAccountRepository;
     }
 
@@ -77,7 +77,7 @@ public class SavingsBootStrapData implements CommandLineRunner  {
 
             //logger.trace(newBankAccount.toString());
 
-            accountRepository.save(newBankAccount);
+            bankAccountRepository.save(newBankAccount);
         }
     }
 }

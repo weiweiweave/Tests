@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AccountRepository extends JpaRepository<BankAccount, Long>  {
+public interface BankAccountRepository extends JpaRepository<BankAccount, Long>  {
 
     @Query(value = "SELECT * FROM bank_Accounts b", nativeQuery = true)
     List<BankAccount> findAll();

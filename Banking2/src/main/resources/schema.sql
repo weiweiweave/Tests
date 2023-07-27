@@ -75,6 +75,7 @@ create table fixedDeposit_Accounts(
 
 create table bank_transactions(
   id int not null AUTO_INCREMENT,
+  uuid varchar(100) null,
   staff_id_who_key_in varchar(100) null,
   account_no varchar(100) null,
   amount double null,

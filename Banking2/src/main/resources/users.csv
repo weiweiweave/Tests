@@ -1,4 +1,4 @@
 Index,Username,Password,Email,Roles
-1,ceciliaChapman,s7Ndcup412FJ,Cecilia.Chapman@gmail.com,"TELLER,MANAGER"
-2,irisWatson,9px1O4GM990N,Iris.Watson@gmail.com,"TELLER"
-3,celesteSlater,l1fVj2m29y8Z,Celeste.Slater@gmail.com,"BOSS"
+1,bankManager,s7Ndcup412FJ,Bank.Manager@gmail.com,"TELLER,MANAGER"
+2,bankTeller,9px1O4GM990N,Bank.Teller@gmail.com,"TELLER"
+3,bankBoss,l1fVj2m29y8Z,Bank.Boss@gmail.com,"BOSS"

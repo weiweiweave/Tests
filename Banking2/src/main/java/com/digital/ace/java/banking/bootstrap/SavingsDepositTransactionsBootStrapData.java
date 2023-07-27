@@ -47,6 +47,7 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
                 Boolean csvIsCredit = Boolean.valueOf(csvCreateSavingDepositTransaction.getIsCredit());
 
                 BankTransaction newBankTransaction = new BankTransaction(
+                        csvCreateSavingDepositTransaction.getUuid(),
                         csvCreateSavingDepositTransaction.getStaffIdWhoKeyIn(),
                         csvCreateSavingDepositTransaction.getAccountNo(),
                         csvAmount,

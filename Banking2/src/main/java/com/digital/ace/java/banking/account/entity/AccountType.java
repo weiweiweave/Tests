@@ -1,11 +1,11 @@
 package com.digital.ace.java.banking.account.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -15,6 +15,7 @@ public class AccountType {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "account_description")
     private String accountDescription;
 

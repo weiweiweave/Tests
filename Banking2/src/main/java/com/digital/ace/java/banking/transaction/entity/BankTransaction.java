@@ -18,6 +18,9 @@ public class BankTransaction {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "uuid")
+    private String uuid;
+
     @Column(name = "staff_id_who_key_in")
     private String staffIdWhoKeyIn;
 
@@ -36,7 +39,8 @@ public class BankTransaction {
     @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
-    public BankTransaction(String staffIdWhoKeyIn, String accountNo, Double amount, Boolean isCredit, String remarks, LocalDateTime creationDateTime) {
+    public BankTransaction(String uuid, String staffIdWhoKeyIn, String accountNo, Double amount, Boolean isCredit, String remarks, LocalDateTime creationDateTime) {
+        this.uuid = uuid;
         this.staffIdWhoKeyIn = staffIdWhoKeyIn;
         this.accountNo = accountNo;
         this.amount = amount;

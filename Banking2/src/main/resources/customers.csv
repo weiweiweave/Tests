@@ -1,3 +1,3 @@
 Index,Uuid,StaffIdWhoKeyIn,Company,SourceOfFund,Address,City,JoinedDate,Nric,FirstName,LastName,Sex,Email,Phone,DateOfBirth,JobTitle
-1,531e2c73-442c-4ed5-8443-da3ea3d18f75,ceciliaChapman,Moody,WORK,"7292 Dictum Av., San Antonio MI 47096",San Antonio,2008-03-20,S1234567A,Calista,Wise,Female,Calista.Wise@gmail.com,895.123.7231,1980-10-20,Advertising account executive
-2,ed387934-d8ea-4780-9b0a-e9e054bae37f,irisWatson,Adobe,WORK,"Ap #651-8679 Sodales Av., Tamuning PA 10855",Tamuning,2009-02-01,S1122334D,Kyla,Olsen,Female,Kyla.Olsen@hotmail.com,654.393.5734,1999-12-12,IT Administrator
+1,531e2c73-442c-4ed5-8443-da3ea3d18f75,bankManager,Moody,WORK,"7292 Dictum Av., San Antonio MI 47096",San Antonio,2008-03-20,S1234567A,Michael,Jackson,Male,Michael.Jackson@gmail.com,895.123.7231,1980-10-20,Advertising account executive
+2,ed387934-d8ea-4780-9b0a-e9e054bae37f,bankTeller,Adobe,WORK,"Ap #651-8679 Sodales Av., Tamuning PA 10855",Tamuning,2009-02-01,S1122334D,Taylor,Swift,Female,Taylor.Swift@hotmail.com,654.393.5734,1999-12-12,IT Administrator
