@@ -57,11 +57,4 @@ public class BankAccount {
         this.creationDateTime = creationDateTime;
     }
 
-    public void deposit (Long amount) {
-        //
-    }
-
-    public void withdrawal (Long amount) {
-        //
-    }
 }

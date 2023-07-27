@@ -15,4 +15,8 @@ public interface BankAccountService {
     Optional<BankAccount> find(Long id);
 
     Optional<BankAccount> findByAccountNo(String accountNo);
+
+    void deposit (String accountNo, Double amount);
+
+    void withdrawal (String accountNo, Double amount);
 }
