@@ -1,5 +1,6 @@
 package com.digital.ace.java.banking.customer.service;
 
+import com.digital.ace.java.banking.account.entity.SavingsAccount;
 import com.digital.ace.java.banking.customer.dao.CustomerRepository;
 import com.digital.ace.java.banking.customer.entity.Customer;
 import com.digital.ace.java.banking.user.dao.UserRepository;
@@ -25,13 +26,27 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findAll();
     }
 
+    @Override
+    public Customer save(Customer customer) {
+        return customerRepository.saveAndFlush(customer);
+    }
+
     public Optional<Customer> find(Long id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
         return optionalCustomer;
     }
 
     @Override
-    public Customer save(Customer customer) {
-        return customerRepository.saveAndFlush(customer);
+    public Optional<Customer> findByNRIC(String nric) {
+        Optional<Customer> optionalCustomer = customerRepository.findByNRIC(nric);
+        return optionalCustomer;
     }
+
+    @Override
+    public Optional<Customer> findByUUID(String uuid) {
+        Optional<Customer> optionalCustomer = customerRepository.findByUUID(uuid);
+        return optionalCustomer;
+    }
+
+
 }

@@ -30,4 +30,10 @@ public class AccountTypeServiceImpl implements AccountTypeService {
         return optionalAccountType;
     }
 
+    @Override
+    public Optional<AccountType> findByAccountDescription(String description) {
+        Optional<AccountType> optionalAccountType = accountTypeRepository.findByAccountDescription(description);
+        return optionalAccountType;
+    }
+
 }

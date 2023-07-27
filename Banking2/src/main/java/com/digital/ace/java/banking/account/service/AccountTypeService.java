@@ -10,4 +10,6 @@ public interface AccountTypeService {
     public List<AccountType> findAll();
 
     Optional<AccountType> find(Long id);
+
+    Optional<AccountType> findByAccountDescription(String description);
 }

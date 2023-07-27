@@ -2,10 +2,15 @@ package com.digital.ace.java.banking.account.rest;
 
 
 import com.digital.ace.java.banking.account.dto.BankAccountDTO;
+import com.digital.ace.java.banking.account.dto.BankAccountIdDTO;
+import com.digital.ace.java.banking.account.dto.CreateBankAccountRequest;
 import com.digital.ace.java.banking.account.entity.BankAccount;
 import com.digital.ace.java.banking.account.mapper.BankAccountMapper;
 import com.digital.ace.java.banking.account.service.BankAccountService;
+import com.digital.ace.java.banking.customer.entity.Customer;
+import com.digital.ace.java.banking.customer.service.CustomerService;
 import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
+import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.exception.UserNotFoundException;
 import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 
@@ -31,25 +36,38 @@ public class BankAccountRestController {
 
     private BankAccountService bankAccountService;
 
+    private CustomerService customerService;
+
     @Autowired
-    public BankAccountRestController(BankAccountService bankAccountService) {
+    public BankAccountRestController(BankAccountService bankAccountService, CustomerService customerService) {
         this.bankAccountService = bankAccountService;
+        this.customerService = customerService;
     }
 
-//    @PostMapping("/user")
-//    public UserIdDTO createUser(@RequestBody @Valid CreateUserRequest createUserRequest)  throws Exception {
-//        User user = UserMapper.toUser(createUserRequest);
-//
-//        user.setId(Long.valueOf(0));
-//
-//        //logger.trace(user.toString());
-//
-//        User savedUser = userService.save(user);
-//
-//        //logger.trace(savedUser.getId().toString());
-//
-//        return new UserIdDTO(savedUser.getId());
-//    }
+    @PostMapping("/bank_account")
+    public BankAccountIdDTO createBankAccount(@RequestBody @Valid CreateBankAccountRequest createBankAccountRequest)  throws Exception {
+
+        Optional<Customer> optionalCustomer = customerService.findByUUID(createBankAccountRequest.getUuid());
+
+        if (optionalCustomer.isPresent()) {
+            BankAccount bankAccount = BankAccountMapper.toBankAccount(createBankAccountRequest);
+
+            bankAccount.setId(Long.valueOf(0));
+
+            //logger.trace(user.toString());
+
+            BankAccount savedBankAccount = bankAccountService.save(bankAccount);
+
+            //logger.trace(savedUser.getId().toString());
+
+            return new BankAccountIdDTO(savedBankAccount.getId());
+        }
+        else {
+            throw new ItemNotFoundException(createBankAccountRequest.getUuid());
+        }
+
+
+    }
 
     @GetMapping("/bank_accounts")
     public List<BankAccountDTO> listBankAccounts() {

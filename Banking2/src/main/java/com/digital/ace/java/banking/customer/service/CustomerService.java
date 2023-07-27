@@ -13,4 +13,8 @@ public interface CustomerService {
     Customer save(Customer customer);
 
     Optional<Customer> find(Long id);
+
+    Optional<Customer> findByNRIC(String nric);
+
+    Optional<Customer> findByUUID(String uuid);
 }
