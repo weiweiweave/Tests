@@ -1,6 +1,8 @@
 package com.digital.ace.java.banking.bootstrap;
 
+import com.digital.ace.java.banking.account.entity.BankAccount;
 import com.digital.ace.java.banking.account.service.BankAccountService;
+import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.transaction.dto.CreateSavingDepositTransactionDTO;
 import com.digital.ace.java.banking.transaction.entity.BankTransaction;
 import com.digital.ace.java.banking.transaction.service.BankTransactionService;
@@ -16,6 +18,7 @@ import java.io.FileReader;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Order(value=5)
 @Component
@@ -49,6 +52,16 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
 
                 Double csvAmount= Double.parseDouble(csvCreateSavingDepositTransaction.getAmount());
                 Boolean csvIsCredit = Boolean.valueOf(csvCreateSavingDepositTransaction.getIsCredit());
+                BankAccount csvBankAccount;
+
+                Optional<BankAccount> optionalBankAccount = bankAccountService.findByAccountNo(csvCreateSavingDepositTransaction.getAccountNo());
+
+                if (optionalBankAccount.isPresent()) {
+                    csvBankAccount = optionalBankAccount.get();
+                }
+                else {
+                    throw new ItemNotFoundException(csvCreateSavingDepositTransaction.getAccountNo());
+                }
 
                 BankTransaction newBankTransaction = new BankTransaction(
                         csvCreateSavingDepositTransaction.getUuid(),
@@ -57,7 +70,8 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
                         csvAmount,
                         csvIsCredit,
                         csvCreateSavingDepositTransaction.getRemarks(),
-                        LocalDateTime.now());
+                        LocalDateTime.now(),
+                        csvBankAccount);
 
                 bankTransactionService.save(newBankTransaction);
 

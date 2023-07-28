@@ -18,8 +18,12 @@ create table bank_Users(
 --ALTER TABLE bank_Users
 --ADD CONSTRAINT user_info_email_Address UNIQUE (email_Address);
 
+--ALTER TABLE BANK_ACCOUNTS
+--ADD CONSTRAINT FK_some_column
+--FOREIGN KEY (some_column) REFERENCES some_table(some_column);
+
 create table customers(
-  id int not null AUTO_INCREMENT UNIQUE,
+  id int not null AUTO_INCREMENT,
   uuid varchar(100) null,
   staff_id_who_key_in varchar(100) null,
   company varchar(100) null,
@@ -36,7 +40,7 @@ create table customers(
   date_Of_birth date null,
   job_title varchar(100) null,
   creation_date_time datetime(6) null,
-  PRIMARY KEY ( id ),
+  CONSTRAINT PK_customers PRIMARY KEY ( id ),
   CONSTRAINT customer_info_nric UNIQUE (nric)
 );
 
@@ -47,7 +51,7 @@ create table account_Type(
 );
 
 create table bank_Accounts(
-  id int not null AUTO_INCREMENT,
+  bank_account_id int not null AUTO_INCREMENT,
   uuid varchar(100) null,
   staff_id_who_key_in varchar(100) null,
   created_date date null,
@@ -55,22 +59,10 @@ create table bank_Accounts(
   balance double null,
   account_no varchar(100) null,
   account_type int null,
-  account_type_id int null,
+  sub_account_type_id int null,
   creation_date_time datetime(6) null,
-  PRIMARY KEY ( id ),
-  CONSTRAINT FK_account_type FOREIGN KEY (account_type) REFERENCES account_Type(id),
-  CONSTRAINT bank_account_info_account_no UNIQUE (account_no)
-);
-
-create table saving_Accounts(
-  id int not null AUTO_INCREMENT,
-  interest_rate double null,
-  min_amount_to_cal_interest double null,
-  PRIMARY KEY ( id )
-);
-
-create table fixedDeposit_Accounts(
-
+  CONSTRAINT PK_bank_Accounts PRIMARY KEY ( bank_account_id),
+  CONSTRAINT FK_account_type FOREIGN KEY (account_type) REFERENCES account_Type(id)
 );
 
 create table bank_transactions(
@@ -82,5 +74,21 @@ create table bank_transactions(
   is_credit boolean null,
   remarks varchar(100) null,
   creation_date_time datetime(6) null,
-  PRIMARY KEY ( id )
+  bank_account_id int null,
+  CONSTRAINT PK_bank_transactions PRIMARY KEY ( id ),
+  CONSTRAINT FK_bank_account_id FOREIGN KEY (bank_account_id) REFERENCES bank_Accounts(bank_account_id)
 );
+
+create table saving_Accounts(
+  id int not null AUTO_INCREMENT,
+  interest_rate double null,
+  min_amount_to_cal_interest double null,
+  CONSTRAINT PK_saving_Accounts PRIMARY KEY ( id )
+);
+
+create table fixedDeposit_Accounts(
+
+);
+
+
+

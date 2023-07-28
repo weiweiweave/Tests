@@ -13,12 +13,18 @@ import com.digital.ace.java.banking.account.service.BankAccountService;
 import com.digital.ace.java.banking.account.service.SavingsAccountService;
 import com.digital.ace.java.banking.exception.IDNotFoundException;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
+import com.digital.ace.java.banking.transaction.dto.BankTransactionDTO;
+import com.digital.ace.java.banking.transaction.entity.BankTransaction;
 import com.digital.ace.java.banking.user.dto.CreateUserRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -51,7 +57,20 @@ public class BankAccountMapper {
         }
         String balance = bankAccount.getBalance().toString();
 
-        return new BankAccountDTO(accountNo,accountTypeStr,balance);
+        List<BankTransaction> bankTransactionList = bankAccount.getBankTransaction();
+        List<BankTransactionDTO> bankTransactionDTOList = new ArrayList<>();
+        for (BankTransaction bankTransaction : bankTransactionList) {
+            BankTransactionDTO bankTransactionDTO = new BankTransactionDTO();
+            bankTransactionDTO.setAccountNo(bankTransaction.getAccountNo());
+            bankTransactionDTO.setAmount(bankTransaction.getAmount().toString());
+            bankTransactionDTO.setIsCredit(bankTransaction.getIsCredit().toString());
+            bankTransactionDTO.setRemarks(bankTransaction.getRemarks());
+            bankTransactionDTOList.add(bankTransactionDTO);
+        }
+
+        //System.out.println(bankTransactionList);
+
+        return new BankAccountDTO(accountNo,accountTypeStr,balance,bankTransactionDTOList);
     }
 
     public static BankAccount toBankAccount(CreateBankAccountRequest createBankAccountRequest) {

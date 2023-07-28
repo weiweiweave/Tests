@@ -1,11 +1,13 @@
 package com.digital.ace.java.banking.transaction.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString
 public class BankTransactionDTO {
 

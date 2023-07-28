@@ -10,11 +10,11 @@ spring:
 
     #Logging JPA Queries To Standard Output
     #to dump the queries to standard out
-    show-sql: true
+    #show-sql: true
     #To beautify or pretty print the SQL
-    properties:
-      hibernate:
-        format_sql: true
+    #properties:
+    #  hibernate:
+    #    format_sql: true
 
     #script-based initialization through schema.sql and data.sql and also Hibernate initialization
     #defer-datasource-initialization: true
