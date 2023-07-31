@@ -9,8 +9,11 @@ import com.digital.ace.java.banking.account.mapper.BankAccountMapper;
 import com.digital.ace.java.banking.account.service.BankAccountService;
 import com.digital.ace.java.banking.customer.entity.Customer;
 import com.digital.ace.java.banking.customer.service.CustomerService;
+import com.digital.ace.java.banking.exception.InsufficientBalanceException;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.transaction.dto.BankTransactionDTO;
+import com.digital.ace.java.banking.transaction.dto.BankTransactionIdDTO;
+import com.digital.ace.java.banking.transaction.dto.CreateBankTransactionRequest;
 import com.digital.ace.java.banking.transaction.entity.BankTransaction;
 import com.digital.ace.java.banking.transaction.mapper.BankTransactionMapper;
 import com.digital.ace.java.banking.transaction.service.BankTransactionService;
@@ -20,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,35 +37,62 @@ public class BankTransactionRestController {
 
     private BankTransactionService bankTransactionService;
 
+    private BankAccountService bankAccountService;
+
     @Autowired
-    public BankTransactionRestController(BankTransactionService bankTransactionService) {
+    public BankTransactionRestController(BankTransactionService bankTransactionService, BankAccountService bankAccountService) {
         this.bankTransactionService = bankTransactionService;
+        this.bankAccountService = bankAccountService;
     }
 
-//    @PostMapping("/bank_account")
-//    public BankAccountIdDTO createBankAccount(@RequestBody @Valid CreateBankAccountRequest createBankAccountRequest)  throws Exception {
-//
-//        Optional<Customer> optionalCustomer = customerService.findByUUID(createBankAccountRequest.getUuid());
-//
-//        if (optionalCustomer.isPresent()) {
-//            BankAccount bankAccount = BankAccountMapper.toBankAccount(createBankAccountRequest);
-//
-//            bankAccount.setId(Long.valueOf(0));
-//
-//            //logger.trace(user.toString());
-//
-//            BankAccount savedBankAccount = bankAccountService.save(bankAccount);
-//
-//            //logger.trace(savedUser.getId().toString());
-//
-//            return new BankAccountIdDTO(savedBankAccount.getId());
-//        }
-//        else {
-//            throw new ItemNotFoundException(createBankAccountRequest.getUuid());
-//        }
-//
-//
-//    }
+    @PostMapping("/bank_transaction")
+    public BankTransactionIdDTO createBankTransaction(@RequestBody @Valid CreateBankTransactionRequest createBankTransactionRequest)  throws Exception {
+
+        Optional<BankAccount> optionalBankAccount = bankAccountService.findByAccountNo(createBankTransactionRequest.getAccountNo());
+        Double amount= Double.parseDouble(createBankTransactionRequest.getAmount());
+        Boolean isCredit = Boolean.valueOf(createBankTransactionRequest.getIsCredit());
+        BankAccount bankAccount;
+        BankTransaction savedBankTransaction;
+
+        if (optionalBankAccount.isPresent()) {
+            bankAccount = optionalBankAccount.get();
+
+            BankTransaction newBankTransaction = new BankTransaction(
+                    createBankTransactionRequest.getUuid(),
+                    createBankTransactionRequest.getStaffIdWhoKeyIn(),
+                    createBankTransactionRequest.getAccountNo(),
+                    amount,
+                    isCredit,
+                    createBankTransactionRequest.getRemarks(),
+                    LocalDateTime.now(),
+                    bankAccount);
+
+            //logger.trace(savedUser.getId().toString());
+
+            if (isCredit) {
+                savedBankTransaction = bankTransactionService.save(newBankTransaction);
+                // to deposit to account
+                bankAccountService.deposit(createBankTransactionRequest.getAccountNo(),amount);
+            }
+            else {
+                // to withdraw from account
+                Double currentBalance = bankAccount.getBalance();
+                if (currentBalance>=amount) {
+                    savedBankTransaction = bankTransactionService.save(newBankTransaction);
+                    bankAccountService.withdrawal(createBankTransactionRequest.getAccountNo(),amount);
+                }
+                else {
+                    throw new InsufficientBalanceException(createBankTransactionRequest.getAccountNo());
+                }
+            }
+
+            return new BankTransactionIdDTO(savedBankTransaction.getId());
+        }
+        else {
+            throw new ItemNotFoundException(createBankTransactionRequest.getAccountNo());
+        }
+
+    }
 
     @GetMapping("/bank_transactions")
     public List<BankTransactionDTO> listBankTransactions() {
