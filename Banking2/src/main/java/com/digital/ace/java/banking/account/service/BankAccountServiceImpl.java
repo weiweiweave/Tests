@@ -2,6 +2,7 @@ package com.digital.ace.java.banking.account.service;
 
 import com.digital.ace.java.banking.account.dao.BankAccountRepository;
 import com.digital.ace.java.banking.account.entity.BankAccount;
+import com.digital.ace.java.banking.exception.InsufficientBalanceException;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,22 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Override
     public void withdrawal(String accountNo, Double amount) {
-        //
+        Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByAccountNo(accountNo);
+
+        if (optionalBankAccount.isPresent()) {
+            BankAccount bankAccount = optionalBankAccount.get();
+            Double currentBalance = bankAccount.getBalance();
+            if (currentBalance>=amount) {
+                currentBalance -= amount;
+                bankAccount.setBalance(currentBalance);
+                bankAccountRepository.saveAndFlush(bankAccount);
+            }
+            else {
+                throw new InsufficientBalanceException(accountNo);
+            }
+        }
+        else {
+            throw new ItemNotFoundException(accountNo);
+        }
     }
 }

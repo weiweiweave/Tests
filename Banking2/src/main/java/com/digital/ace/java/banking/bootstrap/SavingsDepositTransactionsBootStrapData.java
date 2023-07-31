@@ -2,6 +2,7 @@ package com.digital.ace.java.banking.bootstrap;
 
 import com.digital.ace.java.banking.account.entity.BankAccount;
 import com.digital.ace.java.banking.account.service.BankAccountService;
+import com.digital.ace.java.banking.exception.InsufficientBalanceException;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.transaction.dto.CreateSavingDepositTransactionDTO;
 import com.digital.ace.java.banking.transaction.entity.BankTransaction;
@@ -58,24 +59,37 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
 
                 if (optionalBankAccount.isPresent()) {
                     csvBankAccount = optionalBankAccount.get();
+
+                    BankTransaction newBankTransaction = new BankTransaction(
+                            csvCreateSavingDepositTransaction.getUuid(),
+                            csvCreateSavingDepositTransaction.getStaffIdWhoKeyIn(),
+                            csvCreateSavingDepositTransaction.getAccountNo(),
+                            csvAmount,
+                            csvIsCredit,
+                            csvCreateSavingDepositTransaction.getRemarks(),
+                            LocalDateTime.now(),
+                            csvBankAccount);
+
+                    if (csvIsCredit) {
+                        bankTransactionService.save(newBankTransaction);
+                        // to deposit to account
+                        bankAccountService.deposit(csvCreateSavingDepositTransaction.getAccountNo(),csvAmount);
+                    }
+                    else {
+                        // to withdraw from account
+                        Double currentBalance = csvBankAccount.getBalance();
+                        if (currentBalance>=csvAmount) {
+                            bankTransactionService.save(newBankTransaction);
+                            bankAccountService.withdrawal(csvCreateSavingDepositTransaction.getAccountNo(),csvAmount);
+                        }
+                        else {
+                            throw new InsufficientBalanceException(csvCreateSavingDepositTransaction.getAccountNo());
+                        }
+                    }
                 }
                 else {
                     throw new ItemNotFoundException(csvCreateSavingDepositTransaction.getAccountNo());
                 }
-
-                BankTransaction newBankTransaction = new BankTransaction(
-                        csvCreateSavingDepositTransaction.getUuid(),
-                        csvCreateSavingDepositTransaction.getStaffIdWhoKeyIn(),
-                        csvCreateSavingDepositTransaction.getAccountNo(),
-                        csvAmount,
-                        csvIsCredit,
-                        csvCreateSavingDepositTransaction.getRemarks(),
-                        LocalDateTime.now(),
-                        csvBankAccount);
-
-                bankTransactionService.save(newBankTransaction);
-
-                bankAccountService.deposit(csvCreateSavingDepositTransaction.getAccountNo(),csvAmount);
             }
 
     }
