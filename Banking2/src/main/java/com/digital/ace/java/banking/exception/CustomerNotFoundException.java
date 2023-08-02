@@ -3,11 +3,17 @@ package com.digital.ace.java.banking.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value= HttpStatus.NOT_FOUND, reason="Customer Not Found") //404
 public class CustomerNotFoundException extends Exception {
 
-    public CustomerNotFoundException(Long id){
+    public CustomerNotFoundException(String message) {
+        super(message);
+    }
 
-        super("CustomerNotFoundException with id="+id,null,false,false);
+    public CustomerNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public CustomerNotFoundException(Throwable cause) {
+        super(cause);
     }
 }

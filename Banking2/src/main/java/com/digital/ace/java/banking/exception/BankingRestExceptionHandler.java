@@ -23,4 +23,16 @@ public class BankingRestExceptionHandler {
         return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler
+    public ResponseEntity<BankingErrorResponse> handleException(CustomerNotFoundException exc) {
+        // create a BankingErrorResponse
+        BankingErrorResponse error = new BankingErrorResponse();
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(exc.getMessage());
+        error.setTimeStamp(LocalDateTime.now());
+
+        // return ResponseEntity
+        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+    }
+
 }

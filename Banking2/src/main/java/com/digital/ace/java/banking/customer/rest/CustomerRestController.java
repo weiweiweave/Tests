@@ -73,7 +73,7 @@ public class CustomerRestController {
             customer = optionalCustomer.get();
         }
         else {
-            throw new CustomerNotFoundException(id);
+            throw new CustomerNotFoundException("Customer id not found - " + id);
         }
         return CustomerMapper.toDTO(customer);
     }
