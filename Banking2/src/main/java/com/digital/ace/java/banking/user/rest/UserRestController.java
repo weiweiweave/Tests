@@ -71,7 +71,8 @@ public class UserRestController {
             user = optionalUser.get();
         }
         else {
-            throw new UserNotFoundException(id);
+            //throw new UserNotFoundException(id);
+            throw new UserNotFoundException("User id not found - " + id);
         }
         return UserMapper.toDTO(user);
     }
