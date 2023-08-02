@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
 
+// global exception handler
+
 @ControllerAdvice
 public class BankingRestExceptionHandler {
     // 404
