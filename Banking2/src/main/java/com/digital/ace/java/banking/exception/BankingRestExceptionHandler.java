@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class BankingRestExceptionHandler {
-    // 404
+    // 404 Not Found = The server cannot find the requested resource.
     @ExceptionHandler
-    public ResponseEntity<BankingErrorResponse> handleException(UserNotFoundException exc) {
+    public ResponseEntity<BankingErrorResponse> handleException(ItemNotFoundException exc) {
         // create a BankingErrorResponse
         BankingErrorResponse error = new BankingErrorResponse();
         error.setStatus(HttpStatus.NOT_FOUND.value());
@@ -25,16 +25,17 @@ public class BankingRestExceptionHandler {
         return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
     }
 
+    // 400 Bad Request = The server cannot or will not process the request due to something that is perceived to be a client error.
     @ExceptionHandler
-    public ResponseEntity<BankingErrorResponse> handleException(CustomerNotFoundException exc) {
+    public ResponseEntity<BankingErrorResponse> handleException(InsufficientBalanceException exc) {
         // create a BankingErrorResponse
         BankingErrorResponse error = new BankingErrorResponse();
-        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(exc.getMessage());
         error.setTimeStamp(LocalDateTime.now());
 
         // return ResponseEntity
-        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
     }
 
 }

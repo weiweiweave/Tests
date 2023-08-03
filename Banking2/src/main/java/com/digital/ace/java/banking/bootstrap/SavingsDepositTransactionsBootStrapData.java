@@ -83,12 +83,12 @@ public class SavingsDepositTransactionsBootStrapData implements CommandLineRunne
                             bankAccountService.withdrawal(csvCreateSavingDepositTransaction.getAccountNo(),csvAmount);
                         }
                         else {
-                            throw new InsufficientBalanceException(csvCreateSavingDepositTransaction.getAccountNo());
+                            throw new InsufficientBalanceException("This account " + csvCreateSavingDepositTransaction.getAccountNo() + " has insufficient balance.");
                         }
                     }
                 }
                 else {
-                    throw new ItemNotFoundException(csvCreateSavingDepositTransaction.getAccountNo());
+                    throw new ItemNotFoundException(csvCreateSavingDepositTransaction.getAccountNo() + " is not present.");
                 }
             }
 

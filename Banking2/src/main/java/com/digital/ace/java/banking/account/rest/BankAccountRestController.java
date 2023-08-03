@@ -9,19 +9,12 @@ import com.digital.ace.java.banking.account.mapper.BankAccountMapper;
 import com.digital.ace.java.banking.account.service.BankAccountService;
 import com.digital.ace.java.banking.customer.entity.Customer;
 import com.digital.ace.java.banking.customer.service.CustomerService;
-import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
-import com.digital.ace.java.banking.exception.UserNotFoundException;
-import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -63,7 +56,7 @@ public class BankAccountRestController {
             return new BankAccountIdDTO(savedBankAccount.getId());
         }
         else {
-            throw new ItemNotFoundException(createBankAccountRequest.getUuid());
+            throw new ItemNotFoundException(createBankAccountRequest.getUuid() + " is not present.");
         }
 
 
@@ -79,7 +72,7 @@ public class BankAccountRestController {
     }
 
 //    @GetMapping("/bankAccount/{account_no}")
-//    public UserDTO getUser(@PathVariable("account_no") String account_no) throws UserNotFoundException {
+//    public UserDTO getUser(@PathVariable("account_no") String account_no) throws ItemNotFoundException {
 //
 //        Optional<User> optionalUser = userService.find(id);
 //        User user = new User();
@@ -88,7 +81,7 @@ public class BankAccountRestController {
 //            user = optionalUser.get();
 //        }
 //        else {
-//            throw new UserNotFoundException(id);
+//            throw new ItemNotFoundException(id);
 //        }
 //        return UserMapper.toDTO(user);
 //    }

@@ -54,7 +54,7 @@ public class BankAccountServiceImpl implements BankAccountService {
             bankAccountRepository.saveAndFlush(bankAccount);
         }
         else {
-            throw new ItemNotFoundException(accountNo);
+            throw new ItemNotFoundException(accountNo + " is not present.");
         }
     }
 
@@ -71,11 +71,11 @@ public class BankAccountServiceImpl implements BankAccountService {
                 bankAccountRepository.saveAndFlush(bankAccount);
             }
             else {
-                throw new InsufficientBalanceException(accountNo);
+                throw new InsufficientBalanceException("This account " + accountNo + " has insufficient balance.");
             }
         }
         else {
-            throw new ItemNotFoundException(accountNo);
+            throw new ItemNotFoundException(accountNo + " is not present.");
         }
     }
 }

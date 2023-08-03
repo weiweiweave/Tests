@@ -1,21 +1,15 @@
 package com.digital.ace.java.banking.account.mapper;
 
-import com.digital.ace.java.banking.BankingApplication;
-import com.digital.ace.java.banking.account.dao.AccountTypeRepository;
-import com.digital.ace.java.banking.account.dao.SavingsAccountRepository;
 import com.digital.ace.java.banking.account.dto.BankAccountDTO;
 import com.digital.ace.java.banking.account.dto.CreateBankAccountRequest;
 import com.digital.ace.java.banking.account.entity.AccountType;
 import com.digital.ace.java.banking.account.entity.BankAccount;
 import com.digital.ace.java.banking.account.entity.SavingsAccount;
 import com.digital.ace.java.banking.account.service.AccountTypeService;
-import com.digital.ace.java.banking.account.service.BankAccountService;
 import com.digital.ace.java.banking.account.service.SavingsAccountService;
-import com.digital.ace.java.banking.exception.IDNotFoundException;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.transaction.dto.BankTransactionDTO;
 import com.digital.ace.java.banking.transaction.entity.BankTransaction;
-import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +47,7 @@ public class BankAccountMapper {
             accountTypeStr = accountType.getAccountDescription();
         }
         else {
-            throw new IDNotFoundException(bankAccount.getAccountType());
+            throw new ItemNotFoundException(String.valueOf(bankAccount.getAccountType()) + " is not present.");
         }
         String balance = bankAccount.getBalance().toString();
 
@@ -78,14 +72,14 @@ public class BankAccountMapper {
         Double balance = Double.parseDouble(createBankAccountRequest.getBalance());
         Optional<AccountType> optionalAccountType = accountTypeService.findByAccountDescription(createBankAccountRequest.getAccountType());
         AccountType accountType;
-        Long accountTypeInt = Long.valueOf(0);
+        Long accountTypeInt;
 
         if (optionalAccountType.isPresent()) {
             accountType = optionalAccountType.get();
             accountTypeInt = accountType.getId();
         }
         else {
-            throw new ItemNotFoundException(createBankAccountRequest.getAccountType());
+            throw new ItemNotFoundException(createBankAccountRequest.getAccountType() + " is not present.");
         }
 
         Double interestRate = Double.parseDouble(createBankAccountRequest.getInterestRate());

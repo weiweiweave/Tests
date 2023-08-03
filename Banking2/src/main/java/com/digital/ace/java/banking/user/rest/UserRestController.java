@@ -2,7 +2,7 @@ package com.digital.ace.java.banking.user.rest;
 
 
 import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
-import com.digital.ace.java.banking.exception.UserNotFoundException;
+import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.user.dto.CreateUserRequest;
 import com.digital.ace.java.banking.user.dto.UserDTO;
 import com.digital.ace.java.banking.user.dto.UserIdDTO;
@@ -62,7 +62,7 @@ public class UserRestController {
     }
 
     @GetMapping("/user/{id}")
-    public UserDTO getUser(@PathVariable("id") Long id) throws UserNotFoundException {
+    public UserDTO getUser(@PathVariable("id") Long id) throws ItemNotFoundException {
 
         Optional<User> optionalUser = userService.find(id);
         User user = new User();
@@ -71,8 +71,7 @@ public class UserRestController {
             user = optionalUser.get();
         }
         else {
-            //throw new UserNotFoundException(id);
-            throw new UserNotFoundException("User id not found - " + id);
+            throw new ItemNotFoundException("User id not found - " + id);
         }
         return UserMapper.toDTO(user);
     }

@@ -1,21 +1,12 @@
 package com.digital.ace.java.banking.customer.rest;
 
-import com.digital.ace.java.banking.customer.dao.CustomerRepository;
 import com.digital.ace.java.banking.customer.dto.CreateCustomerRequest;
 import com.digital.ace.java.banking.customer.dto.CustomerDTO;
 import com.digital.ace.java.banking.customer.dto.CustomerIdDTO;
 import com.digital.ace.java.banking.customer.entity.Customer;
 import com.digital.ace.java.banking.customer.mapper.CustomerMapper;
 import com.digital.ace.java.banking.customer.service.CustomerService;
-import com.digital.ace.java.banking.exception.CustomerNotFoundException;
-import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
-import com.digital.ace.java.banking.exception.UserNotFoundException;
-import com.digital.ace.java.banking.user.dto.CreateUserRequest;
-import com.digital.ace.java.banking.user.dto.UserDTO;
-import com.digital.ace.java.banking.user.dto.UserIdDTO;
-import com.digital.ace.java.banking.user.entity.User;
-import com.digital.ace.java.banking.user.mapper.UserMapper;
-import jakarta.servlet.http.HttpServletRequest;
+import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +55,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/customer/{id}")
-    public CustomerDTO getCustomer(@PathVariable("id") Long id) throws CustomerNotFoundException {
+    public CustomerDTO getCustomer(@PathVariable("id") Long id) throws ItemNotFoundException {
 
         Optional<Customer> optionalCustomer = customerService.find(id);
         Customer customer = new Customer();
@@ -73,7 +64,7 @@ public class CustomerRestController {
             customer = optionalCustomer.get();
         }
         else {
-            throw new CustomerNotFoundException("Customer id not found - " + id);
+            throw new ItemNotFoundException("Customer id not found - " + id);
         }
         return CustomerMapper.toDTO(customer);
     }

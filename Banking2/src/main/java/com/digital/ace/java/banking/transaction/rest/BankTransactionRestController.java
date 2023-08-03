@@ -1,14 +1,8 @@
 package com.digital.ace.java.banking.transaction.rest;
 
 
-import com.digital.ace.java.banking.account.dto.BankAccountDTO;
-import com.digital.ace.java.banking.account.dto.BankAccountIdDTO;
-import com.digital.ace.java.banking.account.dto.CreateBankAccountRequest;
 import com.digital.ace.java.banking.account.entity.BankAccount;
-import com.digital.ace.java.banking.account.mapper.BankAccountMapper;
 import com.digital.ace.java.banking.account.service.BankAccountService;
-import com.digital.ace.java.banking.customer.entity.Customer;
-import com.digital.ace.java.banking.customer.service.CustomerService;
 import com.digital.ace.java.banking.exception.InsufficientBalanceException;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.transaction.dto.BankTransactionDTO;
@@ -82,14 +76,14 @@ public class BankTransactionRestController {
                     bankAccountService.withdrawal(createBankTransactionRequest.getAccountNo(),amount);
                 }
                 else {
-                    throw new InsufficientBalanceException(createBankTransactionRequest.getAccountNo());
+                    throw new InsufficientBalanceException("This account " + createBankTransactionRequest.getAccountNo() + " has insufficient balance.");
                 }
             }
 
             return new BankTransactionIdDTO(savedBankTransaction.getId());
         }
         else {
-            throw new ItemNotFoundException(createBankTransactionRequest.getAccountNo());
+            throw new ItemNotFoundException(createBankTransactionRequest.getAccountNo() + " is not present.");
         }
 
     }
@@ -104,7 +98,7 @@ public class BankTransactionRestController {
     }
 
 //    @GetMapping("/bankAccount/{account_no}")
-//    public UserDTO getUser(@PathVariable("account_no") String account_no) throws UserNotFoundException {
+//    public UserDTO getUser(@PathVariable("account_no") String account_no) throws ItemNotFoundException {
 //
 //        Optional<User> optionalUser = userService.find(id);
 //        User user = new User();
@@ -113,7 +107,7 @@ public class BankTransactionRestController {
 //            user = optionalUser.get();
 //        }
 //        else {
-//            throw new UserNotFoundException(id);
+//            throw new ItemNotFoundException(id);
 //        }
 //        return UserMapper.toDTO(user);
 //    }
