@@ -29,7 +29,8 @@ spring:
   sql:
     init:
       mode: always
-  #security, to secure REST endpoints:
+  #to secure REST endpoints:
+  #security:
   #  user:
   #    name: scott
   #    password: tiger
