@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS bank_Roles;
+DROP TABLE IF EXISTS bank_Users;
+DROP TABLE IF EXISTS customers;
+
+DROP TABLE IF EXISTS bank_transactions;
+DROP TABLE IF EXISTS saving_Accounts;
+DROP TABLE IF EXISTS bank_Accounts;
+DROP TABLE IF EXISTS account_Type;
+
 create table bank_Users(
   bank_user_id int not null AUTO_INCREMENT,
   username varchar(100) null,
@@ -95,9 +104,9 @@ create table saving_Accounts(
   CONSTRAINT PK_saving_Accounts PRIMARY KEY ( id )
 );
 
-create table fixedDeposit_Accounts(
-
-);
+--create table fixedDeposit_Accounts(
+--
+--);
 
 
 
