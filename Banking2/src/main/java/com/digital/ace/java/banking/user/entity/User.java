@@ -19,27 +19,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "bank_user_id")
     private Long id;
 
     @Column(name = "username")
-    //@CsvBindByName(column = "Username")
     private String username;
 
     @Column(name = "password")
-    //@CsvBindByName(column = "Password")
     private String password;
 
     @Column(name = "email_address")
-    //@CsvBindByName(column = "Email")
     private String emailAddress;
+
+    @Column(name = "active")
+    private Integer active;
 
     @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
-    public User(String username, String password, String emailAddress, LocalDateTime creationDateTime) {
+    public User(String username, String password, String emailAddress, Integer active, LocalDateTime creationDateTime) {
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
+        this.active = active;
         this.creationDateTime = creationDateTime;
     }
 

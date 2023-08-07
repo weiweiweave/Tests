@@ -16,6 +16,6 @@ public class UserMapper {
     }
 
     public static User toUser(CreateUserRequest createUserRequest) {
-        return new User(createUserRequest.getUsername(), createUserRequest.getPassword(), createUserRequest.getEmail(), LocalDateTime.now());
+        return new User(createUserRequest.getUsername(), createUserRequest.getPassword(), createUserRequest.getEmail(), Integer.valueOf(createUserRequest.getActive()), LocalDateTime.now());
     }
 }

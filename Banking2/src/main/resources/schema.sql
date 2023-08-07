@@ -1,12 +1,21 @@
 create table bank_Users(
-  id int not null AUTO_INCREMENT,
+  bank_user_id int not null AUTO_INCREMENT,
   username varchar(100) null,
   password varchar(100) null,
   email_address varchar(100) null,
+  active tinyint NOT NULL,
   creation_date_time datetime(6) null,
-  PRIMARY KEY ( id ),
+  PRIMARY KEY ( bank_user_id ),
   CONSTRAINT user_info_username UNIQUE (username),
   CONSTRAINT user_info_email_address UNIQUE (email_address)
+);
+
+create table bank_Roles(
+  id int not null AUTO_INCREMENT,
+  bank_user_id int null,
+  role varchar(100) null,
+  CONSTRAINT PK_bank_roles PRIMARY KEY ( id ),
+  CONSTRAINT FK_bank_user_id FOREIGN KEY (bank_user_id) REFERENCES bank_Users(bank_user_id)
 );
 
 --ALTER TABLE bank_Users

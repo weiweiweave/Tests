@@ -19,4 +19,7 @@ public class CreateUserDTO {
 
     @CsvBindByName(column = "Roles")
     private String roles;
+
+    @CsvBindByName(column = "Active")
+    private String active;
 }

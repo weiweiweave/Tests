@@ -23,4 +23,8 @@ public class CreateUserRequest {
 
     @Email(message = "Invalid email")
     private String email;
+
+    @NotBlank(message = "Invalid Active: Empty Active")
+    @NotNull(message = "Invalid Active: Active is NULL")
+    private String active;
 }
