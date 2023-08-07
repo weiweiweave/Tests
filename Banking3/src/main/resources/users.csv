@@ -1,0 +1,4 @@
+Index,Username,Password,Email,Roles,Active
+1,bankManager,s7Ndcup412FJ,Bank.Manager@gmail.com,"TELLER,MANAGER",1
+2,bankTeller,9px1O4GM990N,Bank.Teller@gmail.com,"TELLER",1
+3,bankBoss,l1fVj2m29y8Z,Bank.Boss@gmail.com,"TELLER,MANAGER,ADMIN",1

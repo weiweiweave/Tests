@@ -1,0 +1,95 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    #url: jdbc:h2:file:/data/demo
+    username: sa
+    #password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+    #Logging JPA Queries To Standard Output
+    #to dump the queries to standard out
+    #show-sql: true
+    #To beautify or pretty print the SQL
+    #properties:
+    #  hibernate:
+    #    format_sql: true
+
+    #script-based initialization through schema.sql and data.sql and also Hibernate initialization
+    #defer-datasource-initialization: true
+
+    #only script-based schema generation is performed using schema.sql.
+    hibernate:
+      ddl-auto: none
+
+  #Accessing the H2 GUI Console
+  h2:
+    console.enabled: true
+  sql:
+    init:
+      mode: always
+  #to secure REST endpoints:
+  #security:
+  #  user:
+  #    name: scott
+  #    password: tiger
+
+server:
+  port: 8081
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+    include-exception: false
+  #set the context path of application
+  #all requests should be prefixed with /api
+  #doesn't seem to work as intended
+  #servlet:
+    #context-path: /api
+
+
+#Logging JPA Queries Via Loggers
+#The first line shows the sql statement
+#the second statement shows the sql values
+#?logging.level.org.hibernate.orm.jdbc.bind=trace
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+#        orm:
+#          jdbc:
+#            bind: trace
+
+#for actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        #include: health,info
+        #expose all endpoints
+        include: "*"
+        #exclude individual endpoint with comma-delimited list
+        #exclude: health
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: Simple Banking App
+    description: An exercise for Spring
+    version: 1.0.0
+
+
+#custom properties
+sample:
+  users: src\main\resources\users.csv
+  customers: src\main\resources\customers.csv
+  savingDeposit: src\main\resources\savingDeposit.csv
+  accountType: src\main\resources\accountType.csv
+  savingDepositTransactions: src\main\resources\savingDepositTransactions.csv
