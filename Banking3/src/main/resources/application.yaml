@@ -33,10 +33,10 @@ spring:
     init:
       mode: always
   #to secure REST endpoints:
-  #security:
-  #  user:
-  #    name: scott
-  #    password: tiger
+  security:
+    user:
+      name: scott
+      password: tiger
 
 server:
   port: 8081
