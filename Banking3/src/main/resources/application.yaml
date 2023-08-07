@@ -1,12 +1,15 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:mydb
+    #url: jdbc:h2:mem:mydb
     #url: jdbc:h2:file:/data/demo
-    username: sa
-    #password: password
-    driverClassName: org.h2.Driver
-  jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    #username: sa
+    ##password: password
+    url: jdbc:mysql://localhost:3306/banking_directory
+    username: springstudent
+    password: springstudent
+    #driverClassName: org.h2.Driver
+  #jpa:
+    #spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 
     #Logging JPA Queries To Standard Output
     #to dump the queries to standard out
@@ -24,8 +27,8 @@ spring:
       ddl-auto: none
 
   #Accessing the H2 GUI Console
-  h2:
-    console.enabled: true
+  #h2:
+  #  console.enabled: true
   sql:
     init:
       mode: always
