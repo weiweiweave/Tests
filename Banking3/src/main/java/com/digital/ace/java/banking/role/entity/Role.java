@@ -17,14 +17,14 @@ public class Role {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "bank_user_id")
-    private Long bankUserId;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "role")
     private String role;
 
-    public Role(Long bankUserId, String role) {
-        this.bankUserId = bankUserId;
+    public Role(String username, String role) {
+        this.username = username;
         this.role = role;
     }
 
@@ -32,7 +32,7 @@ public class Role {
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", bankUserId=" + bankUserId +
+                ", username='" + username + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }

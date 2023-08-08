@@ -41,15 +41,13 @@ public class UserRestController {
     public UserIdDTO createUser(@RequestBody @Valid CreateUserRequest createUserRequest)  throws Exception {
         User user = UserMapper.toUser(createUserRequest);
 
-        user.setId(Long.valueOf(0));
-
         //logger.trace(user.toString());
 
         User savedUser = userService.save(user);
 
         //logger.trace(savedUser.getId().toString());
 
-        return new UserIdDTO(savedUser.getId());
+        return new UserIdDTO(savedUser.getUsername());
     }
 
     @GetMapping("/users")
@@ -62,16 +60,16 @@ public class UserRestController {
     }
 
     @GetMapping("/user/{id}")
-    public UserDTO getUser(@PathVariable("id") Long id) throws ItemNotFoundException {
+    public UserDTO getUser(@PathVariable("id") String username) throws ItemNotFoundException {
 
-        Optional<User> optionalUser = userService.find(id);
-        User user = new User();
+        Optional<User> optionalUser = userService.find(username);
+        User user;
 
         if(optionalUser.isPresent()) {
             user = optionalUser.get();
         }
         else {
-            throw new ItemNotFoundException("User id not found - " + id);
+            throw new ItemNotFoundException("Username is not found - " + username);
         }
         return UserMapper.toDTO(user);
     }

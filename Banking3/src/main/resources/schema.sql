@@ -8,23 +8,22 @@ DROP TABLE IF EXISTS bank_Accounts;
 DROP TABLE IF EXISTS account_Type;
 
 create table bank_Users(
-  bank_user_id int not null AUTO_INCREMENT,
-  username varchar(100) null,
-  password varchar(100) null,
+  username varchar(100) not null,
+  password varchar(100) not null,
   email_address varchar(100) null,
   active tinyint NOT NULL,
   creation_date_time datetime(6) null,
-  PRIMARY KEY ( bank_user_id ),
-  CONSTRAINT user_info_username UNIQUE (username),
-  CONSTRAINT user_info_email_address UNIQUE (email_address)
+  PRIMARY KEY ( username ),
+  CONSTRAINT bank_Users_unique UNIQUE (username)
 );
 
 create table bank_Roles(
   id int not null AUTO_INCREMENT,
-  bank_user_id int null,
-  role varchar(100) null,
+  username varchar(100) not null,
+  role varchar(100) not null,
   CONSTRAINT PK_bank_roles PRIMARY KEY ( id ),
-  CONSTRAINT FK_bank_user_id FOREIGN KEY (bank_user_id) REFERENCES bank_Users(bank_user_id)
+  CONSTRAINT bank_Roles_unique UNIQUE (username, role),
+  CONSTRAINT FK_bank_user_username FOREIGN KEY (username) REFERENCES bank_Users(username)
 );
 
 --ALTER TABLE bank_Users
@@ -59,7 +58,7 @@ create table customers(
   job_title varchar(100) null,
   creation_date_time datetime(6) null,
   CONSTRAINT PK_customers PRIMARY KEY ( id ),
-  CONSTRAINT customer_info_nric UNIQUE (nric)
+  CONSTRAINT customer_nric_unique UNIQUE (nric)
 );
 
 create table account_Type(

@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserIdDTO {
-    private Long id;
-    public UserIdDTO(Long id) {
-        this.id = id;
+    private String username;
+    public UserIdDTO(String username) {
+        this.username = username;
     }
 }

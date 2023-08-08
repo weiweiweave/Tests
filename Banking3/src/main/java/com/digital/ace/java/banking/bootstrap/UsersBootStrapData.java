@@ -64,7 +64,8 @@ public class UsersBootStrapData implements CommandLineRunner {
                 for(int i=0; i< stringArray.length; i++) {
                     //prints the tokens
                     //System.out.println(stringArray[i]);
-                    Role newRole = new Role(savedUser.getId(),stringArray[i]);
+                    Role newRole = new Role();
+                    newRole = new Role(savedUser.getUsername(),stringArray[i]);
                     roleService.save(newRole);
                 }
             }

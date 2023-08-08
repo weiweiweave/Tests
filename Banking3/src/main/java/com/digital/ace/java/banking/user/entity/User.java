@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -18,10 +17,6 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "bank_user_id")
-    private Long id;
-
     @Column(name = "username")
     private String username;
 
@@ -48,7 +43,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
