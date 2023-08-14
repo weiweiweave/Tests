@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
+    //derived method name query in spring data jpa i.e. query to be executed in database
+    //server derived based on method name defined in repository interface
     //List<Customer> findByLastName(String lastName);
 
     @Query(value = "SELECT * FROM bank_Users u", nativeQuery = true)
