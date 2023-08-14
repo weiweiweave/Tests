@@ -60,9 +60,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(configurer ->
-                configurer
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((authorizeHttpRequests) ->
+                        authorizeHttpRequests
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("TELLER")
                         .requestMatchers(HttpMethod.GET, "/api/users/**").hasRole("TELLER")
                         //.requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
@@ -71,12 +71,12 @@ public class SecurityConfig {
         );
 
         //use HTTP Basic authentication
-        httpSecurity.httpBasic(Customizer.withDefaults());
+        http.httpBasic(Customizer.withDefaults());
 
         //disable Cross Site Request Forgery (CSRF)
         //in general, not required for stateless REST APIs that use POST, PUT, DELETE and/or PATCH
-        httpSecurity.csrf(csrf -> csrf.disable());
+        http.csrf(csrf -> csrf.disable());
 
-        return httpSecurity.build();
+        return http.build();
     }
 }
