@@ -2,55 +2,28 @@ package com.digital.ace.java.banking.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
 
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager() {
-//
-//        //since we defined our users here,
-//        //Spring Boot will not use the user/password from the application.properties file
-//        UserDetails john = User.builder()
-//                .username("john").password("{noop}test123")
-//                .roles("TELLER")
-//                .build();
-//
-//        UserDetails mary = User.builder()
-//                .username("mary").password("{noop}test123")
-//                .roles("TELLER", "MANAGER")
-//                .build();
-//
-//        UserDetails susan = User.builder()
-//                .username("susan").password("{noop}test123")
-//                .roles("TELLER", "MANAGER", "ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(john, mary, susan);
-//    }
-
     @Bean
     //Spring Security Custom Tables
-    //06-setup-spring-security-demo-database-bcrypt-custom-table-names.sql
-    //fun123
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         //tell Spring Security to use JDBC authentication with our data source
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
         //define query to retrieve a user by username
         jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "select username, password, email_address, active from bank_users where username=?");
+                "select username, password, active from bank_users where username=?");
 
         //define query to retrieve the authorities/roles by user
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
@@ -60,23 +33,21 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
+        return new MvcRequestMatcher.Builder(introspector);
+    }
+
+    @Bean
+    SecurityFilterChain appSecurity(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
+        /**
+         *  Below is the custom security configurations
+         */
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
-                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("TELLER")
-                        .requestMatchers(HttpMethod.GET, "/api/users/**").hasRole("TELLER")
-                        //.requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
-                        //.requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("MANAGER")
-                        //.requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
-        );
-
-        //use HTTP Basic authentication
-        http.httpBasic(Customizer.withDefaults());
-
-        //disable Cross Site Request Forgery (CSRF)
-        //in general, not required for stateless REST APIs that use POST, PUT, DELETE and/or PATCH
-        http.csrf(csrf -> csrf.disable());
-
+                                .requestMatchers(mvc.pattern("/api/users"),mvc.pattern("/api/users/**")).authenticated()
+                                .requestMatchers(mvc.pattern("/api/notices"),mvc.pattern("/api/contact")).permitAll())
+                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 }
