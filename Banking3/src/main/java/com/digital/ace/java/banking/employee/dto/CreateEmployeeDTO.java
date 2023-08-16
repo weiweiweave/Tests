@@ -21,5 +21,5 @@ public class CreateEmployeeDTO {
     private String roles;
 
     @CsvBindByName(column = "Active")
-    private String active;
+    private Long active;
 }

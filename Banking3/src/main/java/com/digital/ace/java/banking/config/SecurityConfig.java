@@ -30,7 +30,9 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
-                                .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("TELLER")
+                                .requestMatchers(HttpMethod.GET, "/api/employee/**").hasRole("TELLER")
+                                .requestMatchers(HttpMethod.POST, "/api/employee/**").hasRole("MANAGER")
                                 //.requestMatchers(HttpMethod.GET, "/api/employees").hasRole("TELLER")
 
                                 //.requestMatchers("/api/employees","/user/**").authenticated()

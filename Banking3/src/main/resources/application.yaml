@@ -96,3 +96,6 @@ sample:
   savingDeposit: src\main\resources\csv\savingDeposit.csv
   accountType: src\main\resources\csv\accountType.csv
   savingDepositTransactions: src\main\resources\csv\savingDepositTransactions.csv
+
+bootstrap:
+  enabled: false

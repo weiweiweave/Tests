@@ -28,12 +28,12 @@ public class Employee {
     private String emailAddress;
 
     @Column(name = "active")
-    private Integer active;
+    private Long active;
 
     @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
-    public Employee(String username, String password, String emailAddress, Integer active, LocalDateTime creationDateTime) {
+    public Employee(String username, String password, String emailAddress, Long active, LocalDateTime creationDateTime) {
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;

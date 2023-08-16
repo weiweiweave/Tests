@@ -16,6 +16,6 @@ public class EmployeeMapper {
     }
 
     public static Employee toUser(CreateEmployeeRequest createEmployeeRequest) {
-        return new Employee(createEmployeeRequest.getUsername(), createEmployeeRequest.getPassword(), createEmployeeRequest.getEmail(), Integer.valueOf(createEmployeeRequest.getActive()), LocalDateTime.now());
+        return new Employee(createEmployeeRequest.getUsername(), createEmployeeRequest.getPassword(), createEmployeeRequest.getEmail(), createEmployeeRequest.getActive(), LocalDateTime.now());
     }
 }

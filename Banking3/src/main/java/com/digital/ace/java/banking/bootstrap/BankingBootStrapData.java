@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Order(value=1)
+@ConditionalOnProperty(
+        name = "bootstrap.enabled",
+        havingValue = "true")
 @Component
 public class BankingBootStrapData implements CommandLineRunner {
 
@@ -116,7 +120,7 @@ public class BankingBootStrapData implements CommandLineRunner {
                     csvUser.getUsername(),
                     csvUser.getPassword(),
                     csvUser.getEmailAddress(),
-                    Integer.valueOf(csvUser.getActive()),
+                    csvUser.getActive(),
                     LocalDateTime.now());
 
             Employee savedEmployee = employeeService.save(newEmployee);

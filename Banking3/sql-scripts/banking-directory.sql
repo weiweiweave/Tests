@@ -24,22 +24,22 @@ create table bank_Roles(
   role varchar(100) not null,
   CONSTRAINT PK_bank_roles PRIMARY KEY ( id ),
   CONSTRAINT bank_Roles_unique UNIQUE (username, role)
-  --,
-  --CONSTRAINT FK_bank_user_username FOREIGN KEY (username) REFERENCES bank_Employees(username)
+  #--,
+  #--CONSTRAINT FK_bank_user_username FOREIGN KEY (username) REFERENCES bank_Employees(username)
 );
 
---ALTER TABLE bank_Employees
---ADD CONSTRAINT user_info_username UNIQUE (username);
+#--ALTER TABLE bank_Employees
+#--ADD CONSTRAINT user_info_username UNIQUE (username);
 
---ALTER TABLE bank_Employees
---ADD CONSTRAINT user_info_password UNIQUE (password);
+#--ALTER TABLE bank_Employees
+#--ADD CONSTRAINT user_info_password UNIQUE (password);
 
---ALTER TABLE bank_Employees
---ADD CONSTRAINT user_info_email_Address UNIQUE (email_Address);
+#--ALTER TABLE bank_Employees
+#--ADD CONSTRAINT user_info_email_Address UNIQUE (email_Address);
 
---ALTER TABLE BANK_ACCOUNTS
---ADD CONSTRAINT FK_some_column
---FOREIGN KEY (some_column) REFERENCES some_table(some_column);
+#--ALTER TABLE BANK_ACCOUNTS
+#--ADD CONSTRAINT FK_some_column
+#--FOREIGN KEY (some_column) REFERENCES some_table(some_column);
 
 create table customers(
   id int not null AUTO_INCREMENT,
@@ -105,9 +105,9 @@ create table saving_Accounts(
   CONSTRAINT PK_saving_Accounts PRIMARY KEY ( id )
 );
 
---create table fixedDeposit_Accounts(
---
---);
+#--create table fixedDeposit_Accounts(
+#--
+#--);
 
 
 

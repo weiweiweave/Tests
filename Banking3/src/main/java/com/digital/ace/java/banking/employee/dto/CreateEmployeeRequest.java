@@ -24,7 +24,10 @@ public class CreateEmployeeRequest {
     @Email(message = "Invalid email")
     private String email;
 
-    @NotBlank(message = "Invalid Active: Empty Active")
     @NotNull(message = "Invalid Active: Active is NULL")
-    private String active;
+    private Long active;
+
+    @NotBlank(message = "Invalid Role: Empty Role")
+    @NotNull(message = "Invalid Role: Role is NULL")
+    private String role;
 }

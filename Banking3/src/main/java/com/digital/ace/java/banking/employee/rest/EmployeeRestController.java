@@ -8,6 +8,9 @@ import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
 import com.digital.ace.java.banking.employee.dto.EmployeeIdDTO;
 import com.digital.ace.java.banking.employee.mapper.EmployeeMapper;
+import com.digital.ace.java.banking.role.entity.Role;
+import com.digital.ace.java.banking.role.mapper.RoleMapper;
+import com.digital.ace.java.banking.role.service.RoleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -32,19 +35,25 @@ public class EmployeeRestController {
 
     private EmployeeService employeeService;
 
-    @Autowired
-    public EmployeeRestController(EmployeeService employeeService) {
+    private RoleService roleService;
 
+    @Autowired
+    public EmployeeRestController(
+            EmployeeService employeeService,
+            RoleService roleService) {
         this.employeeService = employeeService;
+        this.roleService = roleService;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/employee")
     public EmployeeIdDTO createEmployee(@RequestBody @Valid CreateEmployeeRequest createEmployeeRequest)  throws Exception {
         Employee employee = EmployeeMapper.toUser(createEmployeeRequest);
+        Role role = RoleMapper.toRole(createEmployeeRequest);
 
         //logger.trace(employee.toString());
 
         Employee savedEmployee = employeeService.save(employee);
+        Role savedRole = roleService.save(role);
 
         //logger.trace(savedEmployee.getId().toString());
 
@@ -60,7 +69,7 @@ public class EmployeeRestController {
         return employeeDTOList;
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/employee/{id}")
     public EmployeeDTO getUser(@PathVariable("id") String username) throws ItemNotFoundException {
 
         Optional<Employee> optionalUser = employeeService.find(username);
