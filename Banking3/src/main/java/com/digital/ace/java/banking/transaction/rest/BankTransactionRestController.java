@@ -98,10 +98,10 @@ public class BankTransactionRestController {
     }
 
 //    @GetMapping("/bankAccount/{account_no}")
-//    public UserDTO getUser(@PathVariable("account_no") String account_no) throws ItemNotFoundException {
+//    public EmployeeDTO getUser(@PathVariable("account_no") String account_no) throws ItemNotFoundException {
 //
-//        Optional<User> optionalUser = userService.find(id);
-//        User user = new User();
+//        Optional<Employee> optionalUser = userService.find(id);
+//        Employee user = new Employee();
 //
 //        if(optionalUser.isPresent()) {
 //            user = optionalUser.get();
@@ -109,7 +109,7 @@ public class BankTransactionRestController {
 //        else {
 //            throw new ItemNotFoundException(id);
 //        }
-//        return UserMapper.toDTO(user);
+//        return EmployeeMapper.toDTO(user);
 //    }
 
     //Controller Based Exception Handling

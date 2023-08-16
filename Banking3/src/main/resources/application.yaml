@@ -91,8 +91,8 @@ info:
 
 #custom properties
 sample:
-  users: src\main\resources\users.csv
-  customers: src\main\resources\customers.csv
-  savingDeposit: src\main\resources\savingDeposit.csv
-  accountType: src\main\resources\accountType.csv
-  savingDepositTransactions: src\main\resources\savingDepositTransactions.csv
+  employees: src\main\resources\csv\employees.csv
+  customers: src\main\resources\csv\customers.csv
+  savingDeposit: src\main\resources\csv\savingDeposit.csv
+  accountType: src\main\resources\csv\accountType.csv
+  savingDepositTransactions: src\main\resources\csv\savingDepositTransactions.csv

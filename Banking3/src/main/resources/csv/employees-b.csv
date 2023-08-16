@@ -1,0 +1,4 @@
+Index,Username,Password,Email,Roles,Active
+1,bankManager,$2a$10$3vSTo7RAqfTDxEjYe6MEm.DFcb3nar.6Lg8XsJaqNgIsTM.pwctoe,Bank.Manager@gmail.com,"TELLER,MANAGER",1
+2,bankTeller,$2a$10$AGei7VnJF36d3vtjjdMeBeqI6mjTY/PQyAL8d0Bb32ADex.kTVo7u,Bank.Teller@gmail.com,"TELLER",1
+3,bankBoss,$2a$10$UaRRK5J686BWFa/QMaINA.88d3J9ocy6XwOpuZ2Gw0QKM7u7WW4fy,Bank.Boss@gmail.com,"TELLER,MANAGER,ADMIN",1

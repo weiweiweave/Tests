@@ -14,7 +14,7 @@ public class BankTransactionMapper {
         return new BankTransactionDTO(accountNo,amount,isCredit,remarks);
     }
 
-//    public static User toUser(CreateUserRequest createUserRequest) {
-//        return new User(createUserRequest.getUsername(), createUserRequest.getPassword(), createUserRequest.getEmail(), LocalDateTime.now());
+//    public static Employee toUser(CreateEmployeeRequest createUserRequest) {
+//        return new Employee(createUserRequest.getUsername(), createUserRequest.getPassword(), createUserRequest.getEmail(), LocalDateTime.now());
 //    }
 }

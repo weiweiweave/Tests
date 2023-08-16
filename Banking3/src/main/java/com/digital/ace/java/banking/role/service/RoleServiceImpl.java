@@ -16,12 +16,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
 //    @Override
-//    public List<User> findAll() {
+//    public List<Employee> findAll() {
 //        return userRepository.findAll();
 //    }
 //
-//    public Optional<User> find(Long id) {
-//        Optional<User> optionalUser = userRepository.findById(id);
+//    public Optional<Employee> find(Long id) {
+//        Optional<Employee> optionalUser = userRepository.findById(id);
 //        return optionalUser;
 //    }
 

@@ -1,10 +1,10 @@
 package com.digital.ace.java.banking.bootstrap;
 
+import com.digital.ace.java.banking.employee.entity.Employee;
 import com.digital.ace.java.banking.role.entity.Role;
 import com.digital.ace.java.banking.role.service.RoleService;
-import com.digital.ace.java.banking.user.dto.CreateUserDTO;
-import com.digital.ace.java.banking.user.entity.User;
-import com.digital.ace.java.banking.user.service.UserService;
+import com.digital.ace.java.banking.employee.dto.CreateEmployeeDTO;
+import com.digital.ace.java.banking.employee.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,19 +21,19 @@ import java.util.List;
 
 @Order(value=1)
 @Component
-public class UsersBootStrapData implements CommandLineRunner {
+public class EmployeesBootStrapData implements CommandLineRunner {
 
-    private UserService userService;
+    private EmployeeService userService;
 
     private RoleService roleService;
 
     //inject properties for sample.users
-    @Value("${sample.users}")
+    @Value("${sample.employees}")
     String usersPath;
 
-    private final Logger logger = LoggerFactory.getLogger(UsersBootStrapData.class);
+    private final Logger logger = LoggerFactory.getLogger(EmployeesBootStrapData.class);
 
-    public UsersBootStrapData(UserService userService, RoleService roleService) {
+    public EmployeesBootStrapData(EmployeeService userService, RoleService roleService) {
 
         this.userService = userService;
         this.roleService = roleService;
@@ -43,21 +43,21 @@ public class UsersBootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-            List<CreateUserDTO> csvToBean = new CsvToBeanBuilder(new FileReader(usersPath)).withType(CreateUserDTO.class).build().parse();
+            List<CreateEmployeeDTO> csvToBean = new CsvToBeanBuilder(new FileReader(usersPath)).withType(CreateEmployeeDTO.class).build().parse();
 
-            Iterator<CreateUserDTO> csvUserIterator = csvToBean.iterator();
+            Iterator<CreateEmployeeDTO> csvUserIterator = csvToBean.iterator();
 
             while (csvUserIterator.hasNext()) {
-                CreateUserDTO csvUser = csvUserIterator.next();
+                CreateEmployeeDTO csvUser = csvUserIterator.next();
 
-                User newUser = new User(
+                Employee newEmployee = new Employee(
                         csvUser.getUsername(),
                         csvUser.getPassword(),
                         csvUser.getEmailAddress(),
                         Integer.valueOf(csvUser.getActive()),
                         LocalDateTime.now());
 
-                User savedUser = userService.save(newUser);
+                Employee savedEmployee = userService.save(newEmployee);
 
                 String s = csvUser.getRoles();
                 String[] stringArray = s.split(",");
@@ -65,7 +65,7 @@ public class UsersBootStrapData implements CommandLineRunner {
                     //prints the tokens
                     //System.out.println(stringArray[i]);
                     Role newRole = new Role();
-                    newRole = new Role(savedUser.getUsername(),stringArray[i]);
+                    newRole = new Role(savedEmployee.getUsername(),stringArray[i]);
                     roleService.save(newRole);
                 }
             }

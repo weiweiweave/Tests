@@ -1,13 +1,13 @@
-package com.digital.ace.java.banking.user.rest;
+package com.digital.ace.java.banking.employee.rest;
 
 
+import com.digital.ace.java.banking.employee.dto.CreateEmployeeRequest;
+import com.digital.ace.java.banking.employee.dto.EmployeeDTO;
+import com.digital.ace.java.banking.employee.entity.Employee;
 import com.digital.ace.java.banking.exception.ExceptionJSONInfo;
 import com.digital.ace.java.banking.exception.ItemNotFoundException;
-import com.digital.ace.java.banking.user.dto.CreateUserRequest;
-import com.digital.ace.java.banking.user.dto.UserDTO;
-import com.digital.ace.java.banking.user.dto.UserIdDTO;
-import com.digital.ace.java.banking.user.entity.User;
-import com.digital.ace.java.banking.user.mapper.UserMapper;
+import com.digital.ace.java.banking.employee.dto.EmployeeIdDTO;
+import com.digital.ace.java.banking.employee.mapper.EmployeeMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -21,57 +21,58 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.digital.ace.java.banking.user.service.UserService;
+import com.digital.ace.java.banking.employee.service.EmployeeService;
 
 
 @RestController
 @RequestMapping("/api")
-public class UserRestController {
+public class EmployeeRestController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private UserService userService;
+    private EmployeeService employeeService;
 
     @Autowired
-    public UserRestController(UserService theUserService) {
-        userService = theUserService;
+    public EmployeeRestController(EmployeeService employeeService) {
+
+        this.employeeService = employeeService;
     }
 
     @PostMapping("/user")
-    public UserIdDTO createUser(@RequestBody @Valid CreateUserRequest createUserRequest)  throws Exception {
-        User user = UserMapper.toUser(createUserRequest);
+    public EmployeeIdDTO createEmployee(@RequestBody @Valid CreateEmployeeRequest createEmployeeRequest)  throws Exception {
+        Employee employee = EmployeeMapper.toUser(createEmployeeRequest);
 
-        //logger.trace(user.toString());
+        //logger.trace(employee.toString());
 
-        User savedUser = userService.save(user);
+        Employee savedEmployee = employeeService.save(employee);
 
-        //logger.trace(savedUser.getId().toString());
+        //logger.trace(savedEmployee.getId().toString());
 
-        return new UserIdDTO(savedUser.getUsername());
+        return new EmployeeIdDTO(savedEmployee.getUsername());
     }
 
-    @GetMapping("/users")
-    public List<UserDTO> listUsers() {
-        List<User> userList = userService.findAll();
-        //logger.trace(userList.toString());
-        List<UserDTO> userDTOList = userList.stream().map(UserMapper::toDTO).collect(Collectors.toList());
-        //logger.trace(userDTOList.toString());
-        return userDTOList;
+    @GetMapping("/employees")
+    public List<EmployeeDTO> listUsers() {
+        List<Employee> employeeList = employeeService.findAll();
+        //logger.trace(employeeList.toString());
+        List<EmployeeDTO> employeeDTOList = employeeList.stream().map(EmployeeMapper::toDTO).collect(Collectors.toList());
+        //logger.trace(employeeDTOList.toString());
+        return employeeDTOList;
     }
 
     @GetMapping("/user/{id}")
-    public UserDTO getUser(@PathVariable("id") String username) throws ItemNotFoundException {
+    public EmployeeDTO getUser(@PathVariable("id") String username) throws ItemNotFoundException {
 
-        Optional<User> optionalUser = userService.find(username);
-        User user;
+        Optional<Employee> optionalUser = employeeService.find(username);
+        Employee employee;
 
         if(optionalUser.isPresent()) {
-            user = optionalUser.get();
+            employee = optionalUser.get();
         }
         else {
             throw new ItemNotFoundException("Username is not found - " + username);
         }
-        return UserMapper.toDTO(user);
+        return EmployeeMapper.toDTO(employee);
     }
 
     //Controller Based Exception Handling

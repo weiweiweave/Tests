@@ -1,13 +1,13 @@
-package com.digital.ace.java.banking.user.dto;
+package com.digital.ace.java.banking.employee.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserIdDTO {
+public class EmployeeIdDTO {
     private String username;
-    public UserIdDTO(String username) {
+    public EmployeeIdDTO(String username) {
         this.username = username;
     }
 }

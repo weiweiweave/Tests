@@ -1,8 +1,6 @@
-package com.digital.ace.java.banking.user.entity;
+package com.digital.ace.java.banking.employee.entity;
 
-import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,10 +11,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "bank_Users")
-public class User {
+@Table(name = "bank_Employees")
+public class Employee {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "username")
     private String username;
 
@@ -32,7 +33,7 @@ public class User {
     @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
-    public User(String username, String password, String emailAddress, Integer active, LocalDateTime creationDateTime) {
+    public Employee(String username, String password, String emailAddress, Integer active, LocalDateTime creationDateTime) {
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
@@ -42,7 +43,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Employee{" +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +

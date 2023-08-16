@@ -1,4 +1,4 @@
-package com.digital.ace.java.banking.user.dto;
+package com.digital.ace.java.banking.employee.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateUserRequest {
+public class CreateEmployeeRequest {
 
     @NotBlank(message = "Invalid Username: Empty Username")
     @NotNull(message = "Invalid Username: Username is NULL")

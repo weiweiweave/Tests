@@ -10,10 +10,8 @@ import java.util.List;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    //List<Customer> findByLastName(String lastName);
-
-    //Customer findById(Long id);
-
     @Query(value = "SELECT * FROM bank_Roles r", nativeQuery = true)
     List<Role> findAll();
+
+    List<Role> findByUsername(String username);
 }

@@ -1,10 +1,7 @@
 package com.digital.ace.java.banking.customer.service;
 
-import com.digital.ace.java.banking.account.entity.SavingsAccount;
 import com.digital.ace.java.banking.customer.dao.CustomerRepository;
 import com.digital.ace.java.banking.customer.entity.Customer;
-import com.digital.ace.java.banking.user.dao.UserRepository;
-import com.digital.ace.java.banking.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

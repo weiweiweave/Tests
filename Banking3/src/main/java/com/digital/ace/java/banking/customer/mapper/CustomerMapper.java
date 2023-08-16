@@ -1,14 +1,11 @@
 package com.digital.ace.java.banking.customer.mapper;
 
-import com.digital.ace.java.banking.customer.dto.CreateCustomerDTO;
 import com.digital.ace.java.banking.customer.dto.CreateCustomerRequest;
 import com.digital.ace.java.banking.customer.dto.CustomerDTO;
 import com.digital.ace.java.banking.customer.entity.Customer;
-import com.digital.ace.java.banking.user.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class CustomerMapper {
 

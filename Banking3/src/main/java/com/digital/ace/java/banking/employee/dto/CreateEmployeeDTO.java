@@ -1,4 +1,4 @@
-package com.digital.ace.java.banking.user.dto;
+package com.digital.ace.java.banking.employee.dto;
 
 import com.opencsv.bean.CsvBindByName;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateUserDTO {
+public class CreateEmployeeDTO {
 
     @CsvBindByName(column = "Username")
     private String username;

@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS bank_Roles;
-DROP TABLE IF EXISTS bank_Users;
+DROP TABLE IF EXISTS bank_Employees;
 DROP TABLE IF EXISTS customers;
 
 DROP TABLE IF EXISTS bank_transactions;
@@ -7,14 +7,15 @@ DROP TABLE IF EXISTS saving_Accounts;
 DROP TABLE IF EXISTS bank_Accounts;
 DROP TABLE IF EXISTS account_Type;
 
-create table bank_Users(
+create table bank_Employees(
+  id int not null AUTO_INCREMENT,
   username varchar(100) not null,
   password varchar(100) not null,
   email_address varchar(100) null,
   active tinyint NOT NULL,
   creation_date_time datetime(6) null,
-  PRIMARY KEY ( username ),
-  CONSTRAINT bank_Users_unique UNIQUE (username)
+  PRIMARY KEY ( id ),
+  CONSTRAINT bank_Employees_unique UNIQUE (username)
 );
 
 create table bank_Roles(
@@ -22,17 +23,18 @@ create table bank_Roles(
   username varchar(100) not null,
   role varchar(100) not null,
   CONSTRAINT PK_bank_roles PRIMARY KEY ( id ),
-  CONSTRAINT bank_Roles_unique UNIQUE (username, role),
-  CONSTRAINT FK_bank_user_username FOREIGN KEY (username) REFERENCES bank_Users(username)
+  CONSTRAINT bank_Roles_unique UNIQUE (username, role)
+  --,
+  --CONSTRAINT FK_bank_user_username FOREIGN KEY (username) REFERENCES bank_Employees(username)
 );
 
---ALTER TABLE bank_Users
+--ALTER TABLE bank_Employees
 --ADD CONSTRAINT user_info_username UNIQUE (username);
 
---ALTER TABLE bank_Users
+--ALTER TABLE bank_Employees
 --ADD CONSTRAINT user_info_password UNIQUE (password);
 
---ALTER TABLE bank_Users
+--ALTER TABLE bank_Employees
 --ADD CONSTRAINT user_info_email_Address UNIQUE (email_Address);
 
 --ALTER TABLE BANK_ACCOUNTS
