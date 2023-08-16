@@ -40,7 +40,8 @@ import java.util.Optional;
 
 @Order(value=1)
 @ConditionalOnProperty(
-        name = "bootstrap.enabled",
+        prefix = "bootstrap",
+        name = "enabled",
         havingValue = "true")
 @Component
 public class BankingBootStrapData implements CommandLineRunner {
