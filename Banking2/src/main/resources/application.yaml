@@ -1,10 +1,17 @@
 spring:
   datasource:
+    #--H2 database
     url: jdbc:h2:mem:mydb
     #url: jdbc:h2:file:/data/demo
     username: sa
     #password: password
     driverClassName: org.h2.Driver
+    
+    #--JDBC properties
+    #url: jdbc:mysql://localhost:3306/banking_directory
+    #username: springstudent
+    #password: springstudent
+  #--H2 database  
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 
@@ -18,18 +25,31 @@ spring:
 
     #script-based initialization through schema.sql and data.sql and also Hibernate initialization
     #defer-datasource-initialization: true
+    
+  #--configure JPA/Hibernate to auto create the tables
 
-    #only script-based schema generation is performed using schema.sql.
     hibernate:
+      #only script-based schema generation is performed using schema.sql.
       ddl-auto: none
 
-  #Accessing the H2 GUI Console
+  #--Accessing the H2 GUI Console
   h2:
     console.enabled: true
+  #--populate database using script-based initialization
   sql:
     init:
       mode: always
-  #to secure REST endpoints:
+      
+#--turn off the Spring Boot banner
+main:
+  banner-mode: off
+
+
+
+#--
+#--Simple Spring Security
+#--
+#--to secure REST endpoints:
   #security:
   #  user:
   #    name: scott
@@ -47,23 +67,28 @@ server:
   #doesn't seem to work as intended
   #servlet:
     #context-path: /api
-
-
-#Logging JPA Queries Via Loggers
-#The first line shows the sql statement
-#the second statement shows the sql values
-#?logging.level.org.hibernate.orm.jdbc.bind=trace
+    
+#--reduce logging level. set logging level to warn
+#--Logging JPA Queries Via Loggers
+#--the first line shows the sql statement
+#--the second statement shows the sql values
+#--logging.level.org.hibernate.orm.jdbc.bind=trace
+#--if fail, try logging.level.org.hibernate.type.descriptor.sql=trace
 logging:
   level:
+    root: warn
     org:
       hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql: TRACE
-#        orm:
-#          jdbc:
-#            bind: trace
+        #--add logging configs to display SQL statements
+        #--log SQL statements
+        SQL: debug
+        orm:
+          jdbc:
+            #--add logging configs to display SQL statements
+            #--log values for SQL statements
+            bind: trace
+      springframework:
+        security: debug
 
 #for actuator
 management:
@@ -93,3 +118,6 @@ sample:
   savingDeposit: src\main\resources\savingDeposit.csv
   accountType: src\main\resources\accountType.csv
   savingDepositTransactions: src\main\resources\savingDepositTransactions.csv
+
+bootstrap:
+  enabled: false

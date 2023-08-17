@@ -63,7 +63,7 @@ public class EmployeeRestController {
     @GetMapping("/employees")
     public List<EmployeeDTO> listUsers() {
         List<Employee> employeeList = employeeService.findAll();
-        //logger.trace(employeeList.toString());
+        //logger.info(employeeList.toString());
         List<EmployeeDTO> employeeDTOList = employeeList.stream().map(EmployeeMapper::toDTO).collect(Collectors.toList());
         //logger.trace(employeeDTOList.toString());
         return employeeDTOList;
